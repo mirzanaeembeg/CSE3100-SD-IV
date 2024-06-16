@@ -1,4 +1,4 @@
-<h1>CSE3100 - Software Development IV<h1>
+<h1>CSE3100 - Software Development IV</h1>
 <br>
 CSE3100 - Software Development IV
 <br>
