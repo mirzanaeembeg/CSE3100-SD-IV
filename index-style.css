@@ -10,7 +10,12 @@
     border: border-box;
 }
 .custom-navbar-bg {
-    background-color: #ffde95;
+    background-color: #FF0080;
+    font-weight: bold;
+}
+.border1:hover{
+    border: 2px solid black;
+    border-radius: 6px;
 }
 
 .w-40 {
@@ -26,12 +31,153 @@
     padding: 0.5rem 1rem;
 }
 
-@media (max-width: 992px) {
+.navbar-links {
+    background-color: #FF5580;
+    padding: 0.5rem 0;
+}
+
+.navbar-links .nav-link {
+    color:black;
+    text-decoration: none;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.navbar-links .nav-link:hover {
+    text-decoration: underline;
+    
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.card {
+    border:2px solid pink;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display:inline-block;
+    border-radius: 50%;
+}
+
+.vertical img {
+    border-radius: 50%;
+}
+
+.horizontal img {
+    border-radius: 50%;
+}
+
+.big img {
+    border-radius: 50%;
+}
+
+.flash-deal-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.flash-deal-card .card-img-top {
+    width: 100%;
+    height: auto;
+}
+
+.flash-deal-card .card-body {
+    padding: 15px;
+}
+
+.flash-deal-card .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.flash-deal-card .card-text {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.flash-deal-card .card-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 15px;
+}
+
+.flash-deal-card .btn {
+    background-color: #007bff;
+    color: white;
+    width: 100%;
+}
+.row.g-0 {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.row.g-0 > [class*='col-'] {
+    padding-right: 0;
+    padding-left: 0;
+}
+.footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e7e7e7;
+    padding: 20px 0;
+}
+
+.footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer .container {
+    max-width: 960px;
+}
+
+.footer .row {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer p {
+    margin: 0;
+    color: #6c757d;
+}
+
+
+@media (max-width: 300px) {
     .navbar-collapse {
         flex-direction: column;
     }
     .nav-search {
         width: 100%;
         margin-top: 1rem;
+    }
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+    .navbar-collapse {
+        flex-direction: column;
+    }
+    .nav-search {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 992px) {
+    .navbar-collapse {
+        flex-direction: row;
+    }
+    .nav-search {
+        width: 40%;
     }
 }
