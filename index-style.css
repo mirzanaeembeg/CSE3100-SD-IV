@@ -12,12 +12,14 @@
 }
 .custom-navbar-bg {
     padding: 10px;
-    background-color: #a8dadc;
-    font-weight: bold;
+    background-color: #ff006e;
+    text-decoration-color: #000000;
 }
 .border1:hover{
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 6px;
+    text-decoration-color: black;
+    font-weight: bold;
 }
 .border2:hover{
     border: 10px solid palevioletred;
@@ -32,13 +34,17 @@
     display: flex;
     align-items: center;
 }
-
+.navbarx{
+    background-color: #ddd;
+    font-size: large;
+    font-weight: 500;
+}
 .navbar-nav .nav-item .nav-link {
     padding: 0.5rem 1rem;
 }
 
 .navbar-links {
-    background-color: #f1faee;
+    background-color: #fefae0;
     padding: 0.5rem 0;
 }
 
@@ -58,6 +64,7 @@
 }
 
 .card {
+    margin: 2px;
     border:2px solid palevioletred;
 }
 
@@ -71,13 +78,18 @@
 .flash-deal-card {
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin: 15px;
+    margin: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.flash-deal-card:hover{
+    cursor: pointer;
+    border: 2px solid;
+}
 .flash-deal-card .card-img-top {
     width: 100%;
-    height: auto;
+    height: 450px;
+    border-radius:0;
 }
 
 .flash-deal-card .card-body {
@@ -117,7 +129,7 @@
     padding-left: 0;
 }
 .footer {
-    background-color: #fdfcdc;
+    background-color: #f1faee;
     border-top: 1px solid #e7e7e7;
     padding: 20px 0;
 }
@@ -129,10 +141,6 @@
 
 .footer a:hover {
     text-decoration: underline;
-}
-
-.footer .container {
-    max-width: 960px;
 }
 
 .footer .row {
@@ -155,21 +163,3 @@
     }
 }
 
-@media (min-width: 300px) and (max-width: 576px) {
-    .navbar-collapse {
-        flex-direction: column;
-    }
-    .nav-search {
-        width: 100%;
-        margin-top: 1rem;
-    }
-}
-
-@media (min-width: 576px) and (max-width: 992px) {
-    .navbar-collapse {
-        flex-direction: row;
-    }
-    .nav-search {
-        width: 40%;
-    }
-}
