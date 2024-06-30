@@ -15,7 +15,7 @@ body, html {
 }
 
 .sidebar {
-    background-color: #ff006e;
+    background-color: white;
     width: 30%;
     display: flex;
     justify-content: center;
@@ -23,7 +23,7 @@ body, html {
     padding: 20px;
 }
 
-.logo {
+.illustration {
     max-width: 100%;
     height: auto;
 }

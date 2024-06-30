@@ -1,7 +1,14 @@
 body {
     background-color: #f8f9fa;
 }
-
+#timer {
+    font-size: 2em;
+    text-align: center;
+    margin: 20px 0;
+    background-color:antiquewhite;
+    border: #e6005e dotted;
+    border-radius: 10px;
+}
 .card {
     border: none;
     border-radius: 10px;
