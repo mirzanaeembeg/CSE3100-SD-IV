@@ -7,19 +7,19 @@
 
 .container-fluid {
     min-height: 100vh;
-    background-color:beige;
+    background-color: white;
 }
 
 .sidebar {
-    background-color:#e6005c;
-    color: white;
+    background-color: #D6EFD8;
     padding: 20px;
     height: 80vh;
     width: 20%;
     border: #f8f9fa solid;
     border-radius: 10px;
-    margin-top: 50px;
-    margin-left: 30px;
+    margin-top: 100px;
+    margin-left: 50px;
+    gap: 4px;
 }
 
 .profile-header {
@@ -40,18 +40,25 @@
 
 .profile-email {
     font-size: 14px;
-    color: #ffd1e4;
+    color: black;
 }
 
 .nav-link {
-    color: white;
+    color: #000000;
     padding: 10px 0;
-    font-size: 18px;
+    font-size: 1.25em;
+    font-weight: light;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .nav-link:hover, .nav-link.active {
-    background-color: #e6005c;
-    color: white;
+    background-color:transparent;
+    color: black;
+    border: 2px solid;
+    border-radius: 12px;
+    font-weight: 600;
+    padding: 3px;
+    display: inline;
 }
 
 .main-content {
@@ -59,18 +66,31 @@
 }
 
 .activity-summary {
-    background-color: #f8f9fa;
+    background-color: #F1F8E8;
     padding: 20px;
     border-radius: 10px;
 }
 
 .activity-summary p {
-    font-size: 18px;
+    font-size: 35px;
     margin-bottom: 10px;
 }
 
 #total-bids, #winning-bids, #my-orders {
-    font-weight: bold;
+    font-weight: 900;
+    font-size: larger;
+}
+
+.form-control-file {
+    margin-top: 10px;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    vertical-align: middle;
 }
 
 @media (max-width: 768px) {
