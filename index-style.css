@@ -12,8 +12,8 @@
 }
 .custom-navbar-bg {
     padding: 10px;
-    background-color: #ff006e;
-    text-decoration-color: #000000;
+    background-color: #ffd166;
+    color: #000000;
 }
 .border1:hover{
     border: 1px solid black;
