@@ -22,24 +22,24 @@
                         </li>
                     </ul>
                     <div class="d-flex w-40 nav-search">
-                        <select class="form-select me-2 border1">
-                            <option selected><b>All</b></option>
-                            <option><a href="#"></a>Shoes</option>
-                            <option><a href="#"></a>Smartphone</option>
-                            <option><a href="#"></a>Sports</option>
-                            <option><a href="#"></a>Books</option>
-                            <option><a href="#"></a>Home Appliance</option>
-                            <option><a href="#"></a>Grocery</option>
-                            <option><a href="#"></a>Gadget</option>
-                            <option><a href="#"></a>Personal Care</option>
-                            <option><a href="#"></a>Auct-Goods</option>
-                            <option><a href="#"></a>Chocolates</option>
-                            <option><a href="#"></a>Paints</option>
-                            <option><a href="#"></a>Toys</option>
-                            <option><a href="#"></a>Art & Craft</option>
-                            <option><a href="#"></a>Pets</option>
-                            <option><a href="#"></a>Fashion</option>
-                            <option><a href="#"></a>Furniture</option>
+                        <select class="form-select me-2 border1" id="categorySelect">
+                            <option selected disabled><b>All</b></option>
+                            <option value="shoes.html">Shoes</option>
+                            <option value="smartphone.html">Smartphone</option>
+                            <option value="sports.html">Sports</option>
+                            <option value="books.html">Books</option>
+                            <option value="homeappliance.html">Home Appliance</option>
+                            <option value="grocery.html">Grocery</option>
+                            <option value="gadgets.html">Gadget</option>
+                            <option value="personalcare.html">Personal Care</option>
+                            <option value="auction1.html">Auct-Goods</option>
+                            <option value="chocolates.html">Chocolates</option>
+                            <option value="paints.html">Paints</option>
+                            <option value="toys.html">Toys</option>
+                            <option value="artncraft.html">Art & Craft</option>
+                            <option value="pets.html">Pets</option>
+                            <option value="fashion.html">Fashion</option>
+                            <option value="furnitures.html">Furniture</option>
                         </select>
                         <input class="form-control me-2 border1" type="search" placeholder="Search on BechaKena" aria-label="Search">
                         <button class="btn btn-outline-success border1  navbarx" type="submit"><big>Search</big></button>
@@ -84,16 +84,16 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="images/carousel/3.jpg" class="d-block w-100" alt="Toys">
+                <a href="books.html"><img src="images/carousel/3.jpg" class="d-block w-100" alt="books"></a>
               </div>
               <div class="carousel-item">
-                <img src="images/carousel/4.jpg" class="d-block w-100" alt="Gamer's tools">
+                <a href="homeappliance.html"><img src="images/carousel/4.jpg" class="d-block w-100" alt="homeappliance"></a>
               </div>
               <div class="carousel-item">
-                <img src="images/carousel/2.jpg" class="d-block w-100" alt="Books">
+                <a href="gadgets.html"><img src="images/carousel/2.jpg" class="d-block w-100" alt="Gadgets"></a>
               </div>
               <div class="carousel-item">
-                <img src="images/carousel/1.jpg" class="d-block w-100" alt="Books">
+                <a href="toys.html"><img src="images/carousel/1.jpg" class="d-block w-100" alt="toys"></a>
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -113,7 +113,7 @@
           <div class="container-fluid">
             <div class="row g-0">
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="shoes.html">
                         <div class="card">
                             <b>Shoes</b>
                             <img src="images/categories/shoes.jpg" class="card-img-top" alt="Shoes">
@@ -121,7 +121,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="smartphone.html">
                         <div class="card">
                             <b>Smartphone</b>
                             <img src="images/categories/smartphone.jpg" class="card-img-top" alt="Smartphone">
@@ -129,7 +129,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="sports.html">
                         <div class="card">
                             <b>Sports</b>
                             <img src="images/categories/sports.jpg" class="card-img-top" alt="Sports">
@@ -137,7 +137,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="books.html">
                         <div class="card">
                             <b>Books</b>
                             <img src="images/categories/books.jpg" class="card-img-top" alt="Books">
@@ -145,7 +145,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="homeappliance.html">
                         <div class="card">
                             <b>Home Appliances</b>
                             <img src="images/categories/home appliance.jpg" class="card-img-top" alt="Home Appliances">
@@ -153,7 +153,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="grocery.html">
                         <div class="card">
                             <b>Grocery</b>
                             <img src="images/categories/grocery.jpg" class="card-img-top" alt="Grocery">
@@ -161,7 +161,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="gadgets.html">
                         <div class="card">
                             <b>Gadgets</b>
                             <img src="images/categories/gadget.jpg" class="card-img-top" alt="Gadgets">
@@ -169,7 +169,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="personalcare.html">
                         <div class="card">
                             <b>Personal Care</b>
                             <img src="images/categories/personal care.jpg" class="card-img-top" alt="Personal Care">
@@ -177,7 +177,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="auction1.html">
                         <div class="card">
                             <b>Auct-Goods</b>
                             <img src="images/categories/auction.jpg" class="card-img-top" alt="Auct-Goods">
@@ -185,7 +185,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="chocolates.html">
                         <div class="card">
                             <b>Chocolates</b>
                             <img src="images/categories/chocolates.jpg" class="card-img-top" alt="Chocolates">
@@ -193,7 +193,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="paints.html">
                         <div class="card">
                             <b>Paints</b>
                             <img src="images/categories/paints.jpg" class="card-img-top" alt="Paints">
@@ -201,7 +201,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="toys.html">
                         <div class="card">
                             <b>Toys</b>
                             <img src="images/categories/toys.jpg" class="card-img-top" alt="Toys">
@@ -209,7 +209,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="artncraft.html">
                         <div class="card">
                             <b>Art & Craft</b>
                             <img src="images/categories/art and craft.jpg" class="card-img-top" alt="Art & Craft">
@@ -217,7 +217,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="pets.html">
                         <div class="card">
                             <b>Pets</b>
                             <img src="images/categories/pets.jpg" class="card-img-top" alt="Pets">
@@ -225,7 +225,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="fashion.html">
                         <div class="card">
                             <b>Fashion</b>
                             <img src="images/categories/fashion.jpg" class="card-img-top" alt="Fashion">
@@ -233,7 +233,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="#">
+                    <a href="furnitures.html">
                         <div class="card">
                             <b>Furniture</b>
                             <img src="images/categories/furniture.jpg" class="card-img-top" alt="Furniture">
@@ -453,6 +453,14 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.getElementById('categorySelect').addEventListener('change', function() {
+            var selectedPage = this.value;
+            if (selectedPage) {
+                window.location.href = selectedPage;
+            }
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
