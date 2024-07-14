@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: ../signin.html");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +44,7 @@
                             <a class="nav-link" href="my_orders.html"><i class="fas fa-shopping-cart me-2"></i><span>My Orders</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-sign-out-alt me-2"></i><span>Sign Out</span></a>
+                            <a class="nav-link" href="php/signout.php"><i class="fas fa-sign-out-alt me-2"></i><span>Sign Out</span></a>
                         </li>
                     </ul>
                 </div>
