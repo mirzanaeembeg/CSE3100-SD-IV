@@ -114,7 +114,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="smartphone.html">
+                    <a href="php/smartphone.php">
                         <div class="card">
                             <b>Smartphone</b>
                             <img src="images/categories/smartphone.jpg" class="card-img-top" alt="Smartphone">
@@ -122,7 +122,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="sports.html">
+                    <a href="php/sports.php">
                         <div class="card">
                             <b>Sports</b>
                             <img src="images/categories/sports.jpg" class="card-img-top" alt="Sports">
@@ -130,7 +130,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="books.html">
+                    <a href="php/books.php">
                         <div class="card">
                             <b>Books</b>
                             <img src="images/categories/books.jpg" class="card-img-top" alt="Books">
@@ -138,7 +138,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="homeappliance.html">
+                    <a href="php/homeappliance.php">
                         <div class="card">
                             <b>Home Appliances</b>
                             <img src="images/categories/home appliance.jpg" class="card-img-top" alt="Home Appliances">
@@ -146,7 +146,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="grocery.html">
+                    <a href="php/grocery.php">
                         <div class="card">
                             <b>Grocery</b>
                             <img src="images/categories/grocery.jpg" class="card-img-top" alt="Grocery">
@@ -154,7 +154,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="gadgets.html">
+                    <a href="php/gadgets.php">
                         <div class="card">
                             <b>Gadgets</b>
                             <img src="images/categories/gadget.jpg" class="card-img-top" alt="Gadgets">
@@ -162,7 +162,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="personalcare.html">
+                    <a href="php/personalcare.php">
                         <div class="card">
                             <b>Personal Care</b>
                             <img src="images/categories/personal care.jpg" class="card-img-top" alt="Personal Care">
@@ -170,7 +170,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="auction1.html">
+                    <a href="php/auction1.php">
                         <div class="card">
                             <b>Auct-Goods</b>
                             <img src="images/categories/auction.jpg" class="card-img-top" alt="Auct-Goods">
@@ -178,7 +178,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="chocolates.html">
+                    <a href="php/chocolates.php">
                         <div class="card">
                             <b>Chocolates</b>
                             <img src="images/categories/chocolates.jpg" class="card-img-top" alt="Chocolates">
@@ -186,7 +186,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="paints.html">
+                    <a href="php/paints.php">
                         <div class="card">
                             <b>Paints</b>
                             <img src="images/categories/paints.jpg" class="card-img-top" alt="Paints">
@@ -194,7 +194,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="toys.html">
+                    <a href="php/toys.php">
                         <div class="card">
                             <b>Toys</b>
                             <img src="images/categories/toys.jpg" class="card-img-top" alt="Toys">
@@ -202,7 +202,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="artncraft.html">
+                    <a href="php/artncraft.php">
                         <div class="card">
                             <b>Art & Craft</b>
                             <img src="images/categories/art and craft.jpg" class="card-img-top" alt="Art & Craft">
@@ -210,7 +210,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="pets.html">
+                    <a href="php/pets.php">
                         <div class="card">
                             <b>Pets</b>
                             <img src="images/categories/pets.jpg" class="card-img-top" alt="Pets">
@@ -218,7 +218,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="fashion.html">
+                    <a href="php/fashion.php">
                         <div class="card">
                             <b>Fashion</b>
                             <img src="images/categories/fashion.jpg" class="card-img-top" alt="Fashion">
@@ -226,7 +226,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="furnitures.html">
+                    <a href="php/furnitures.php">
                         <div class="card">
                             <b>Furniture</b>
                             <img src="images/categories/furniture.jpg" class="card-img-top" alt="Furniture">
@@ -427,16 +427,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="about.html">About Us</a>
+                    <a href="php/about.php">About Us</a>
                 </div>
                 <div class="col-md-3">
-                    <a href="customer_service.html">Customer Service</a>
+                    <a href="php/customer_service.php">Customer Service</a>
                 </div>
                 <div class="col-md-3">
-                    <a href="terms.html">Terms & Conditions</a>
+                    <a href="php/terms.php">Terms & Conditions</a>
                 </div>
                 <div class="col-md-3">
-                    <a href="contact_us.html">Contact Us</a>
+                    <a href="php/contact_us.php/">Contact Us</a>
                 </div>
             </div>
             <div class="row">

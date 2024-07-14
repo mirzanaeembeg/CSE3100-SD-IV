@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BechaKena - About Us</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="styles/about.css">
 </head>
 <body>
     <div class="container">
@@ -55,7 +55,7 @@
                             <p class="card-text">Lead Developer</p>
                             <p class="card-email">Email: <a href="mailto:mirzanaeem278@gmail.com">mirzanaeem278@gmail.com</a></p>
                             <a href="https://www.linkedin.com/in/mirza-naeem-beg/" class="btn btn-outline-primary" target="_blank">LinkedIn</a>
-                            <a href="https://github.com/mirza-naeembeg" class="btn btn-outline-dark" target="_blank">GitHub</a>
+                            <a href="https://github.com/mirzanaeem" class="btn btn-outline-dark" target="_blank">GitHub</a>
                             <a href="https://www.facebook.com/mrnimblenaeem/" class="btn btn-outline-primary" target="_blank">Facebook</a>
                         </div>
                     </div>
