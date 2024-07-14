@@ -6,20 +6,20 @@
     <title>BechaKena</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="index-style.css">
+    <link rel="stylesheet" href="styles/index-style.css">
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg custom-navbar-bg">
             <div class="container-fluid">
-                <a class="navbar-brand border1" href="index.html"><img src="logo.png" alt="Logo" class="img-fluid"></a>
+            <a class="navbar-brand border1" href="index.php"><img src="logo.png" alt="Logo" class="img-fluid"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active border1" aria-current="page" href="auction1.html">
+                            <a class="nav-link active border1" aria-current="page" href="php/auction1.php">
                                 <i class="fas fa-gavel"></i> <big>Auction</big>
                             </a>
                         </li>
@@ -27,24 +27,23 @@
                     <div class="d-flex w-40 nav-search">
                         <select class="form-select me-2 border1" id="categorySelect">
                             <option selected disabled><b>All</b></option>
-                            <!-- ... (options remain unchanged) ... -->
                         </select>
                         <input class="form-control me-2 border1" type="search" placeholder="Search on BechaKena" aria-label="Search">
                         <button class="btn btn-outline-success border1 navbarx" type="submit"><big>Search</big></button>
                     </div>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link border1" href="orders.html">
+                            <a class="nav-link border1" href="php/orders.php">
                                 <i class="fas fa-clipboard-list"></i> <big>Order</big>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border1" href="cart.html">
+                            <a class="nav-link border1" href="php/cart.php">
                                 <i class="fas fa-shopping-cart"></i> <big>Cart</big>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border1" href="signin.html">
+                            <a class="nav-link border1" href="php/signin.php">
                                 <i class="fas fa-sign-in-alt"></i> <big>Sign In</big>
                             </a>
                         </li>
@@ -56,13 +55,13 @@
             <div class="container">
                 <div class="row justify-content-between">
                     <div class="col text-center">
-                        <a href="seller_registration.html" class="nav-link">Seller Reg.</a>
+                        <a href="php/seller_registration.php" class="nav-link">Seller Reg.</a>
                     </div>
                     <div class="col text-center">
-                        <a href="next_auction.html" class="nav-link">Next Auction</a>
+                        <a href="php/next_auction.php" class="nav-link">Next Auction</a>
                     </div>
                     <div class="col text-center">
-                        <a href="hot_deals.html" class="nav-link">Hot Deals</a>
+                        <a href="php/hot_deals.php" class="nav-link">Hot Deals</a>
                     </div>
                 </div>
             </div>
@@ -78,16 +77,16 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <a href="books.html"><img src="images/carousel/3.jpg" class="d-block w-100" alt="books"></a>
+                <a href="php/books.php"><img src="images/carousel/3.jpg" class="d-block w-100" alt="books"></a>
               </div>
               <div class="carousel-item">
-                <a href="homeappliance.html"><img src="images/carousel/4.jpg" class="d-block w-100" alt="homeappliance"></a>
+                <a href="php/homeappliance.php"><img src="images/carousel/4.jpg" class="d-block w-100" alt="homeappliance"></a>
               </div>
               <div class="carousel-item">
-                <a href="gadgets.html"><img src="images/carousel/2.jpg" class="d-block w-100" alt="Gadgets"></a>
+                <a href="php/gadgets.php"><img src="images/carousel/2.jpg" class="d-block w-100" alt="Gadgets"></a>
               </div>
               <div class="carousel-item">
-                <a href="toys.html"><img src="images/carousel/1.jpg" class="d-block w-100" alt="toys"></a>
+                <a href="php/toys.php"><img src="images/carousel/1.jpg" class="d-block w-100" alt="toys"></a>
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -107,7 +106,7 @@
           <div class="container-fluid">
             <div class="row g-0">
                 <div class="col-md-3 border2">
-                    <a href="shoes.html">
+                    <a href="php/shoes.php">
                         <div class="card">
                             <b>Shoes</b>
                             <img src="images/categories/shoes.jpg" class="card-img-top" alt="Shoes">
@@ -455,6 +454,7 @@
             }
         });
     </script>
+    <script src="<?php echo $base_url; ?>js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
