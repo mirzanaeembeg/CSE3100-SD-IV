@@ -6,7 +6,7 @@
     <title>BechaKena</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="styles/index-style.css">
+    <link rel="stylesheet" href="index-style.css">
 </head>
 <body>
     <header>
@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active border1" aria-current="page" href="php/auction1.php">
+                            <a class="nav-link active border1" aria-current="page" href="auction1.php">
                                 <i class="fas fa-gavel"></i> <big>Auction</big>
                             </a>
                         </li>
@@ -33,17 +33,17 @@
                     </div>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link border1" href="php/orders.php">
+                            <a class="nav-link border1" href="orders.php">
                                 <i class="fas fa-clipboard-list"></i> <big>Order</big>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border1" href="php/cart.php">
+                            <a class="nav-link border1" href="cart.php">
                                 <i class="fas fa-shopping-cart"></i> <big>Cart</big>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border1" href="php/signin.php">
+                            <a class="nav-link border1" href="signin.php">
                                 <i class="fas fa-sign-in-alt"></i> <big>Sign In</big>
                             </a>
                         </li>
@@ -55,13 +55,13 @@
             <div class="container">
                 <div class="row justify-content-between">
                     <div class="col text-center">
-                        <a href="php/seller_registration.php" class="nav-link">Seller Reg.</a>
+                        <a href="seller_registration.php" class="nav-link">Seller Reg.</a>
                     </div>
                     <div class="col text-center">
-                        <a href="php/next_auction.php" class="nav-link">Next Auction</a>
+                        <a href="next_auction.php" class="nav-link">Next Auction</a>
                     </div>
                     <div class="col text-center">
-                        <a href="php/hot_deals.php" class="nav-link">Hot Deals</a>
+                        <a href="hot_deals.php" class="nav-link">Hot Deals</a>
                     </div>
                 </div>
             </div>
@@ -77,16 +77,16 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <a href="php/books.php"><img src="images/carousel/3.jpg" class="d-block w-100" alt="books"></a>
+                <a href="books.php"><img src="images/carousel/3.jpg" class="d-block w-100" alt="books"></a>
               </div>
               <div class="carousel-item">
-                <a href="php/homeappliance.php"><img src="images/carousel/4.jpg" class="d-block w-100" alt="homeappliance"></a>
+                <a href="homeappliance.php"><img src="images/carousel/4.jpg" class="d-block w-100" alt="homeappliance"></a>
               </div>
               <div class="carousel-item">
-                <a href="php/gadgets.php"><img src="images/carousel/2.jpg" class="d-block w-100" alt="Gadgets"></a>
+                <a href="gadgets.php"><img src="images/carousel/2.jpg" class="d-block w-100" alt="Gadgets"></a>
               </div>
               <div class="carousel-item">
-                <a href="php/toys.php"><img src="images/carousel/1.jpg" class="d-block w-100" alt="toys"></a>
+                <a href="toys.php"><img src="images/carousel/1.jpg" class="d-block w-100" alt="toys"></a>
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -106,7 +106,7 @@
           <div class="container-fluid">
             <div class="row g-0">
                 <div class="col-md-3 border2">
-                    <a href="php/shoes.php">
+                    <a href="shoes.php">
                         <div class="card">
                             <b>Shoes</b>
                             <img src="images/categories/shoes.jpg" class="card-img-top" alt="Shoes">
@@ -114,7 +114,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/smartphone.php">
+                    <a href="smartphone.php">
                         <div class="card">
                             <b>Smartphone</b>
                             <img src="images/categories/smartphone.jpg" class="card-img-top" alt="Smartphone">
@@ -122,7 +122,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/sports.php">
+                    <a href="sports.php">
                         <div class="card">
                             <b>Sports</b>
                             <img src="images/categories/sports.jpg" class="card-img-top" alt="Sports">
@@ -130,7 +130,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/books.php">
+                    <a href="books.php">
                         <div class="card">
                             <b>Books</b>
                             <img src="images/categories/books.jpg" class="card-img-top" alt="Books">
@@ -138,7 +138,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/homeappliance.php">
+                    <a href="homeappliance.php">
                         <div class="card">
                             <b>Home Appliances</b>
                             <img src="images/categories/home appliance.jpg" class="card-img-top" alt="Home Appliances">
@@ -146,7 +146,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/grocery.php">
+                    <a href="grocery.php">
                         <div class="card">
                             <b>Grocery</b>
                             <img src="images/categories/grocery.jpg" class="card-img-top" alt="Grocery">
@@ -154,7 +154,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/gadgets.php">
+                    <a href="gadgets.php">
                         <div class="card">
                             <b>Gadgets</b>
                             <img src="images/categories/gadget.jpg" class="card-img-top" alt="Gadgets">
@@ -162,7 +162,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/personalcare.php">
+                    <a href="personalcare.php">
                         <div class="card">
                             <b>Personal Care</b>
                             <img src="images/categories/personal care.jpg" class="card-img-top" alt="Personal Care">
@@ -170,7 +170,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/auction1.php">
+                    <a href="auction1.php">
                         <div class="card">
                             <b>Auct-Goods</b>
                             <img src="images/categories/auction.jpg" class="card-img-top" alt="Auct-Goods">
@@ -178,7 +178,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/chocolates.php">
+                    <a href="chocolates.php">
                         <div class="card">
                             <b>Chocolates</b>
                             <img src="images/categories/chocolates.jpg" class="card-img-top" alt="Chocolates">
@@ -186,7 +186,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/paints.php">
+                    <a href="paints.php">
                         <div class="card">
                             <b>Paints</b>
                             <img src="images/categories/paints.jpg" class="card-img-top" alt="Paints">
@@ -194,7 +194,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/toys.php">
+                    <a href="toys.php">
                         <div class="card">
                             <b>Toys</b>
                             <img src="images/categories/toys.jpg" class="card-img-top" alt="Toys">
@@ -202,7 +202,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/artncraft.php">
+                    <a href="artncraft.php">
                         <div class="card">
                             <b>Art & Craft</b>
                             <img src="images/categories/art and craft.jpg" class="card-img-top" alt="Art & Craft">
@@ -210,7 +210,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/pets.php">
+                    <a href="pets.php">
                         <div class="card">
                             <b>Pets</b>
                             <img src="images/categories/pets.jpg" class="card-img-top" alt="Pets">
@@ -218,7 +218,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/fashion.php">
+                    <a href="fashion.php">
                         <div class="card">
                             <b>Fashion</b>
                             <img src="images/categories/fashion.jpg" class="card-img-top" alt="Fashion">
@@ -226,7 +226,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="php/furnitures.php">
+                    <a href="furnitures.php">
                         <div class="card">
                             <b>Furniture</b>
                             <img src="images/categories/furniture.jpg" class="card-img-top" alt="Furniture">
@@ -427,16 +427,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="php/about.php">About Us</a>
+                    <a href="about.php">About Us</a>
                 </div>
                 <div class="col-md-3">
-                    <a href="php/customer_service.php">Customer Service</a>
+                    <a href="customer_service.php">Customer Service</a>
                 </div>
                 <div class="col-md-3">
-                    <a href="php/terms.php">Terms & Conditions</a>
+                    <a href="terms.php">Terms & Conditions</a>
                 </div>
                 <div class="col-md-3">
-                    <a href="php/contact_us.php/">Contact Us</a>
+                    <a href="contact_us.php">Contact Us</a>
                 </div>
             </div>
             <div class="row">
@@ -454,7 +454,6 @@
             }
         });
     </script>
-    <script src="<?php echo $base_url; ?>js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
