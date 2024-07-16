@@ -1,3 +1,8 @@
+<?php
+$page_title = "Personal Care";
+include 'header.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -177,3 +182,6 @@
     </div>
 </body>
 </html>
+<?php
+include 'footer.php';
+?>

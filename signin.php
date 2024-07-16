@@ -1,4 +1,10 @@
 <?php
+$page_title = "Sign In - BechaKena";
+include 'header.php';
+?>
+
+
+<?php
 // signin.php
 session_start();
 error_reporting(E_ALL);
@@ -46,11 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<?php
-$page_title = "Sign In - BechaKena"; // Set this for each page
-include 'header.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

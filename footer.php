@@ -4,7 +4,41 @@
     <title><?php echo isset($page_title) ? $page_title : 'BechaKena'; ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="footer.css">
+    <style>
+        .row.g-0 {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .row.g-0 > [class*='col-'] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+        .footer {
+            background-color: #f1faee;
+            border-top: 1px solid #e7e7e7;
+            padding: 20px 0;
+        }
+
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .row {
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer p {
+            margin: 0;
+            color: #6c757d;
+        }
+    </style>
 </head>
 
 <footer class="footer mt-auto py-3">
@@ -40,3 +74,5 @@ function navigateToPage() {
     }
 }
 </script>
+</body>
+</html>

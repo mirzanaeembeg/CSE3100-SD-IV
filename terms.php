@@ -1,3 +1,8 @@
+<?php
+$page_title = "Terms & Conditions";
+include 'header.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,3 +57,6 @@
     </div>
 </body>
 </html>
+<?php
+include 'footer.php';
+?>

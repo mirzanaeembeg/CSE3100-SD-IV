@@ -1,3 +1,9 @@
+<?php
+// seller_registration.php
+$page_title = "Seller Registration";
+include 'header.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,5 +76,11 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
 </body>
 </html>
+<?php
+include 'footer.php';
+?>

@@ -1,3 +1,9 @@
+<?php
+// next_auction.php
+$page_title = "Next Auction";
+include 'header.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,3 +79,6 @@
     </script>
 </body>
 </html>
+<?php
+include 'footer.php';
+?>

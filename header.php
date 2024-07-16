@@ -13,7 +13,45 @@ if (session_status() == PHP_SESSION_NONE) {
     <title><?php echo isset($page_title) ? $page_title : 'BechaKena'; ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="header.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .navbar {
+            height: 10vh; /* Set the height to 10vh */
+            padding: 1rem 0;
+        }
+        .custom-navbar-bg {
+            background-color: #ffd166;
+            color: #000000;
+        }
+        .border1:hover {
+            border: 1px solid black;
+            border-radius: 6px;
+            text-decoration-color: black;
+            font-weight: bold;
+        }
+        .w-40 {
+            width: 60% !important;
+        }
+        .nav-search {
+            display: flex;
+            align-items: center;
+        }
+        .navbarx {
+            background-color: #ddd !important;
+            font-size: large;
+            font-weight: 500;
+        }
+        .navbar-nav .nav-item .nav-link {
+            padding: 0.5rem 1rem;
+        }
+        .nav-black {
+            color: #000 !important;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -36,36 +74,49 @@ if (session_status() == PHP_SESSION_NONE) {
                         <option selected disabled><b>All</b></option>
                         <option value="shoes.php"><b>Shoes</b></option>
                         <option value="smartphone.php"><b>Smartphone</b></option>
-                        <!-- ... other options ... -->
+                        <option value="sports.php"><b>Sports</b></option>
+                        <option value="books.php"><b>books</b></option>
+                        <option value="homeappliance.php"><b>Home Appliance</b></option>
+                        <option value="grocery.php"><b>Grocery</b></option>
+                        <option value="gadgets.php"><b>Gadgets</b></option>
+                        <option value="personalcare.php"><b>Personal Care</b></option>
+                        <option value="auction1.php"><b>Auct-Goods</b></option>
+                        <option value="chocolates.php"><b>Chocolates</b></option>
+                        <option value="paints.php"><b>Paints</b></option>
+                        <option value="toys.php"><b>Toys</b></option>
+                        <option value="artncraft.php"><b>Art & Craft</b></option>
+                        <option value="pets.php"><b>Pets</b></option>
+                        <option value="fashion.php"><b>Fashion</b></option>
+                        <option value="furniture.php"><b>Furniture</b></option>
                     </select>
                     <input class="form-control me-2 border1" type="search" placeholder="Search on BechaKena" aria-label="Search">
                     <button class="btn btn-outline-success border1 navbarx" type="submit"><big>Search</big></button>
                 </div>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link border1" href="orders.php">
+                        <a class="nav-link border1 nav-black" href="orders.php">
                             <i class="fas fa-clipboard-list"></i> <big>Order</big>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link border1" href="cart.php">
+                        <a class="nav-link border1 nav-black" href="cart.php">
                             <i class="fas fa-shopping-cart"></i> <big>Cart</big>
                         </a>
                     </li>
                     <?php if (isset($_SESSION['user_id'])): ?>
                         <li class="nav-item">
-                            <a class="nav-link border1" href="profile.php">
+                            <a class="nav-link border1 nav-black" href="profile.php">
                                 <i class="fas fa-user"></i> <big>Profile</big>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border1" href="logout.php">
+                            <a class="nav-link border1 nav-black" href="logout.php">
                                 <i class="fas fa-sign-out-alt"></i> <big>Logout</big>
                             </a>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link border1" href="signin.php">
+                            <a class="nav-link border1 nav-black" href="signin.php">
                                 <i class="fas fa-sign-in-alt"></i> <big>Sign In</big>
                             </a>
                         </li>
@@ -74,21 +125,6 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
         </div>
     </nav>
-    <div class="navbar-links">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col text-center">
-                    <a href="seller_registration.php" class="nav-link">Seller Reg.</a>
-                </div>
-                <div class="col text-center">
-                    <a href="next_auction.php" class="nav-link">Next Auction</a>
-                </div>
-                <div class="col text-center">
-                    <a href="hot_deals.php" class="nav-link">Hot Deals</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </header>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
@@ -101,4 +137,3 @@ function navigateToPage() {
     }
 }
 </script>
-</body>
