@@ -25,9 +25,26 @@
                         </li>
                     </ul>
                     <div class="d-flex w-40 nav-search">
-                        <select class="form-select me-2 border1" id="categorySelect">
-                            <option selected disabled><b>All</b></option>
-                        </select>
+                    <select class="form-select me-2 border1" id="categorySelect" onchange="navigateToPage()">
+                        <option selected disabled><b>All</b></option>
+                        <option value="shoes.php"><b>Shoes</b></option>
+                        <option value="smartphone.php"><b>Smartphone</b></option>
+                        <option value="sports.php"><b>Sports</b></option>
+                        <option value="books.php"><b>books</b></option>
+                        <option value="homeappliance.php"><b>Home Appliance</b></option>
+                        <option value="grocery.php"><b>Grocery</b></option>
+                        <option value="gadgets.php"><b>Gadgets</b></option>
+                        <option value="personalcare.php"><b>Personal Care</b></option>
+                        <option value="auction1.php"><b>Auct-Goods</b></option>
+                        <option value="chocolates.php"><b>Chocolates</b></option>
+                        <option value="paints.php"><b>Paints</b></option>
+                        <option value="toys.php"><b>Toys</b></option>
+                        <option value="artncraft.php"><b>Art & Craft</b></option>
+                        <option value="pets.php"><b>Pets</b></option>
+                        <option value="fashion.php"><b>Fashion</b></option>
+                        <option value="furniture.php"><b>Furniture</b></option>
+                        <!-- Add more categories here as needed -->
+                    </select>
                         <input class="form-control me-2 border1" type="search" placeholder="Search on BechaKena" aria-label="Search">
                         <button class="btn btn-outline-success border1 navbarx" type="submit"><big>Search</big></button>
                     </div>
@@ -226,7 +243,7 @@
                     </a>
                 </div>
                 <div class="col-md-3 border2">
-                    <a href="furnitures.php">
+                    <a href="furniture.php">
                         <div class="card">
                             <b>Furniture</b>
                             <img src="images/categories/furniture.jpg" class="card-img-top" alt="Furniture">
