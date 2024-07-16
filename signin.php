@@ -46,6 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<?php
+$page_title = "Sign In - BechaKena"; // Set this for each page
+include 'header.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,3 +91,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </body>
 </html>
+<?php
+    include 'footer.php';
+?>
