@@ -1,7 +1,25 @@
 <?php
-// next_auction.php
+session_start();
 $page_title = "Auction";
 include 'header.php';
+
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "bechakenaDB";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch auction items from the database
+$sql = "SELECT * FROM auction_items WHERE end_time > NOW() ORDER BY end_time ASC";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +27,7 @@ include 'header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BechaKena</title>
+    <title>Auction - BechaKena</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="auction.css">
 </head>
@@ -17,469 +35,455 @@ include 'header.php';
     <div id="auctionTimer" class="text-center my-3"></div>
     <div class="container my-5">
         <div class="row">
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <?php
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+            ?>
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/bat.png" class="card-img-top" alt="cricket bat">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Cricket Bat of WC23</h5>
-                        <p class="card-text">This bat was used in WC23 final match by Warner.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $155</span>
-                            <span class="buy-now">Base Price: $150</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/bike1.png" class="card-img-top" alt="Bike">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">YAMAHA R15 V5</h5>
-                        <p class="card-text">Yamaha's latest model R15 V5 ash color.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $5009</span>
-                            <span class="buy-now">Base Price: $5000</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/bike10.png" class="card-img-top" alt="Bike">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">YAMAHA R15 V3</h5>
-                        <p class="card-text">This is blue color Yamaha R15 V3.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $4055</span>
-                            <span class="buy-now">Base Price: $4050</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/bike2.png" class="card-img-top" alt="Bike">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">YAMAHA MT15 V4</h5>
-                        <p class="card-text">This is black color Yamaha MT15 V4 for bike passionate lover.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $6008</span>
-                            <span class="buy-now">Base Price: $6000</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/bike3.png" class="card-img-top" alt="Bike">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">YAMAHA R15 V3</h5>
-                        <p class="card-text">Yamaha R15 V3 two year used, good condition, blue color.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $3510</span>
-                            <span class="buy-now">Base Price: $3500</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/bike4.png" class="card-img-top" alt="Bike">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">LIFAN KPR Red</h5>
-                        <p class="card-text">Lifan is a chines bike brand and kpr is the iconic model.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $2550</span>
-                            <span class="buy-now">Base Price: $2250</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/bike5.png" class="card-img-top" alt="Bike">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Pulser NS160</h5>
-                        <p class="card-text">Bajjaj Pulser NS160 made in Vietnam ash-blue.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $2050</span>
-                            <span class="buy-now">Base Price: $2000</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/bike6.png" class="card-img-top" alt="Bike">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Pulser NR160 New</h5>
-                        <p class="card-text">Bajjaj Pulser NR160 New is assembled in Bangladesh.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $2200</span>
-                            <span class="buy-now">Base Price: $2090</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/bike7.png" class="card-img-top" alt="Bike">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Pulser 150</h5>
-                        <p class="card-text">This is the first Pulser 150 model lunched in market.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $1500</span>
-                            <span class="buy-now">Base Price: $1150</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/bike8.png" class="card-img-top" alt="Bike">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Apache RTR 160</h5>
-                        <p class="card-text">TVS Apache RTR 160, millage 45 kilo per litter.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $1100</span>
-                            <span class="buy-now">Base Price: $1000</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/bike9.png" class="card-img-top" alt="Bike">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">HORNET V2.0 160</h5>
-                        <p class="card-text">HONDA Hornet V2.0 160 made in japan.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $3100</span>
-                            <span class="buy-now">Base Price: $3000</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/car1.png" class="card-img-top" alt="Car">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">BMW G-Power 1200cc</h5>
-                        <p class="card-text">BMW G-Power 1200cc five sit privet car.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $55000</span>
-                            <span class="buy-now">Base Price: $50000</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/car2.png" class="card-img-top" alt="Item Image">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">BMW G-Power turbo</h5>
-                        <p class="card-text">BMW G-Power 1500cc turbo engine sports car.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $100000</span>
-                            <span class="buy-now">Base Price: $95000</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/car3.png" class="card-img-top" alt="Car">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">FERRARI</h5>
-                        <p class="card-text">Ferrari 1200cc red sports car.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $90000</span>
-                            <span class="buy-now">Base Price: $85000</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/car4.png" class="card-img-top" alt="Car">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">BMW 8 Series</h5>
-                        <p class="card-text">BMW 8 series blue color for luxery person.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $2000000</span>
-                            <span class="buy-now">Base Price: $1800000</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/bus.png" class="card-img-top" alt="Bus">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Bus</h5>
-                        <p class="card-text">Bus for factory use, 40 sit, red color, happy & comfortable trip.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $22000</span>
-                            <span class="buy-now">Base Price: $20000</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/house1.png" class="card-img-top" alt="House">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">House</h5>
-                        <p class="card-text">This is a banglo house for personal use or spend vacation.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $200000</span>
-                            <span class="buy-now">Base Price: $150000</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/house2.png" class="card-img-top" alt="House">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">House</h5>
-                        <p class="card-text">This is a banglo house for personal use or spend vacation.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $200100</span>
-                            <span class="buy-now">Base Price: $190150</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/land1.png" class="card-img-top" alt="Land">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Land</h5>
-                        <p class="card-text">This land is an useful place for building any business.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $100000</span>
-                            <span class="buy-now">Base Price: $90000</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/rabindranath.png" class="card-img-top" alt="Rabindranath">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Rabindronath</h5>
-                        <p class="card-text">This portrait was drawn by Jaynul Abedin.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $5100</span>
-                            <span class="buy-now">Base Price: $4950</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/ring.png" class="card-img-top" alt="Ring">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Diamond Ring</h5>
-                        <p class="card-text">this ring was used by british princes.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $2100</span>
-                            <span class="buy-now">Base Price: $1500</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/watch1.png" class="card-img-top" alt="Watch">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Rollex Watch</h5>
-                        <p class="card-text">Luxerious rolex watch for men in black.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $10100</span>
-                            <span class="buy-now">Base Price: $9150</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/watch2.png" class="card-img-top" alt="Watch">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Rollex Watch</h5>
-                        <p class="card-text">Luxerious Rollex watch in golden color.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $20100</span>
-                            <span class="buy-now">Base Price: $18150</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
+            <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/viollin.png" class="card-img-top" alt="Viollin">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title">Viollin</h5>
-                        <p class="card-text">Big Viollin for house to increase beautiful ness.</p>
+                            <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                            <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $1100</span>
-                            <span class="buy-now">Base Price: $1000</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
+                            <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <?php
+                }
+            } else {
+                echo "<p>No auction items available at the moment.</p>";
+            }
+            ?>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item active"><a class="page-link" href="auction1.php">1</a></li>
+                    <li class="page-item"><a class="page-link" href="auction2.php">2</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <li class="page-item active"><a class="page-link" href="auction1.html">1</a></li>
-                <li class="page-item"><a class="page-link" href="auction2.html">2</a></li>
-            </ul>
-        </nav>
     </div>
     <script>
         // Function to get the end time from localStorage or set a new one
@@ -522,8 +526,48 @@ include 'header.php';
             }
         }, 1000);
         </script>
+         <script>
+            // Add this new script for handling bids
+            document.addEventListener('DOMContentLoaded', function() {
+                const bidButtons = document.querySelectorAll('.bid-button');
+                bidButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const itemId = this.getAttribute('data-item-id');
+                        const bidAmount = this.parentElement.previousElementSibling.value;
+                        
+                        if (bidAmount) {
+                            // Send bid to server (you'll need to implement this PHP script)
+                            fetch('place_bid.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                },
+                                body: `item_id=${itemId}&bid_amount=${bidAmount}`
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    alert('Bid placed successfully!');
+                                    // Update the current bid display
+                                    this.closest('.card-body').querySelector('.current-bid').textContent = `Current Bid: $${data.new_bid}`;
+                                } else {
+                                    alert('Error placing bid: ' + data.message);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('An error occurred while placing your bid.');
+                            });
+                        } else {
+                            alert('Please enter a valid bid amount.');
+                        }
+                    });
+                });
+            });
+        </script>
 </body>
 </html>
 <?php
 include 'footer.php';
+$conn->close();
 ?>

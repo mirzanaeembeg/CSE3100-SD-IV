@@ -1,12 +1,10 @@
 <?php
+// Start output buffering
+ob_start();
+
 $page_title = "Sign In - BechaKena";
+// Include header after starting the session
 include 'header.php';
-?>
-
-
-<?php
-// signin.php
-session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -38,7 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (password_verify($password, $user['password'])) {
                 $_SESSION["user_id"] = $user['id'];
                 $_SESSION["username"] = $user['username'];
-                header("Location: profile.php");
+                
+                // Redirect using JavaScript
+                echo "<script>window.location.href = 'profile.php';</script>";
                 exit();
             } else {
                 $message = "Invalid username or password";
@@ -93,5 +93,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 </html>
 <?php
-    include 'footer.php';
+include 'footer.php';
+
+// End output buffering and send output
+ob_end_flush();
 ?>
