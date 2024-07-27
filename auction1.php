@@ -18,7 +18,8 @@ if ($conn->connect_error) {
 }
 
 // Fetch auction items from the database
-$sql = "SELECT * FROM auction_items WHERE end_time > NOW() ORDER BY end_time ASC";
+//$sql = "SELECT * FROM auction_items WHERE end_time > NOW() ORDER BY end_time ASC";
+$sql = "SELECT * FROM auction_items";
 $result = $conn->query($sql);
 ?>
 

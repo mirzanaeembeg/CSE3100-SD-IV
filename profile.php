@@ -1,14 +1,21 @@
 <?php
+session_start();
 $page_title = "Profile";
+
 include 'header.php';
 ?>
 
 <?php
-session_start();
 if (!isset($_SESSION['user_id'])) {
+    ob_start();
     header("Location: signin.php");
-    exit();
+    ob_end_clean();
+    //exit();
+
+    // echo "<script>window.location.href='signin.php';</script>";
+    // exit;
 }
+
 
 // Database connection
 $conn = new mysqli("localhost", "root", "", "bechakenaDB");
@@ -19,16 +26,21 @@ if ($conn->connect_error) {
 }
 
 // Fetch user data
-$user_id = $_SESSION['user_id'];
-$sql = "SELECT username, email, profile_picture FROM users WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+//session_start();
+//$_SESSION['user_id']=1;
+if(isset($_SESSION['user_id'])){
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT username, email, profile_picture FROM users WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
 
-$stmt->close();
-$conn->close();
+    $stmt->close();
+    $conn->close();
+}
+
 ?>
 
 <!DOCTYPE html>

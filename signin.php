@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Start output buffering
 ob_start();
 
@@ -35,10 +36,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $result->fetch_assoc();
             if (password_verify($password, $user['password'])) {
                 $_SESSION["user_id"] = $user['id'];
+                $GLOBALS["user_id"]= $user["id"];
+                $user_id = $GLOBALS['user_id'];
                 $_SESSION["username"] = $user['username'];
                 
                 // Redirect using JavaScript
-                echo "<script>window.location.href = 'profile.php';</script>";
+                ob_start();
+                header("Location: signin.php");
+                ob_end_clean();
                 exit();
             } else {
                 $message = "Invalid username or password";
