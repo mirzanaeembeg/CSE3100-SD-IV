@@ -1,6 +1,5 @@
 <?php
 session_start();
-$page_title = "Auction";
 include 'header.php';
 
 // Database connection

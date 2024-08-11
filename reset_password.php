@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['error'] = "No account found with that email address.";
     }
 
-    header("Location: forget_password.html");
+    header("Location: forget_password.php");
     exit();
 }
 ?>

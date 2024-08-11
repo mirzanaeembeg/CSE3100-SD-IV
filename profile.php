@@ -10,10 +10,6 @@ if (!isset($_SESSION['user_id'])) {
     ob_start();
     header("Location: signin.php");
     ob_end_clean();
-    //exit();
-
-    // echo "<script>window.location.href='signin.php';</script>";
-    // exit;
 }
 
 

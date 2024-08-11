@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
     if (empty($username) || empty($password)) {
-        $message = "Both username and password are required.";
+        $message = "Both username and password are required!";
     } else {
         // Database connection
         $conn = new mysqli("localhost", "root", "", "bechakenaDB");
@@ -39,10 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $GLOBALS["user_id"]= $user["id"];
                 $user_id = $GLOBALS['user_id'];
                 $_SESSION["username"] = $user['username'];
-                
-                // Redirect using JavaScript
                 ob_start();
-                header("Location: signin.php");
+                header("Location: profile.php");
                 ob_end_clean();
                 exit();
             } else {
