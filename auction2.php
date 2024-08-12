@@ -1,14 +1,35 @@
 <?php
-// next_auction.php
-$page_title = "Auction";
+session_start();
 include 'header.php';
+
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "bechakenaDB";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch auction items from the database (second page)
+$items_per_page = 12; // Adjust as needed
+$page = 2;
+$offset = ($page - 1) * $items_per_page;
+$sql = "SELECT * FROM auction_items LIMIT $offset, $items_per_page";
+$result = $conn->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BechaKena</title>
+    <title>Auction Page 2 - BechaKena</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="auction.css">
 </head>
@@ -16,467 +37,40 @@ include 'header.php';
     <div id="auctionTimer" class="text-center my-3"></div>
     <div class="container my-5">
         <div class="row">
+            <?php
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+            ?>
             <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="images/auction/led tv1.png" class="card-img-top" alt="LED TV">
+                    <img src="<?php echo $row['image_url']; ?>" class="card-img-top" alt="<?php echo $row['title']; ?>">
                     <div class="card-body">
-                        <h5 class="card-title"> LG 52" LED TV</h5>
-                        <p class="card-text">LG 52" LED Smart Google TV. Play Store, Chrome Browser.</p>
+                        <h5 class="card-title"><?php echo $row['title']; ?></h5>
+                        <p class="card-text"><?php echo $row['description']; ?></p>
                         <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $200</span>
-                            <span class="buy-now">Base Price: $150</span>
+                            <span class="current-bid">Current Bid: $<?php echo $row['current_bid']; ?></span>
+                            <span class="buy-now">Base Price: $<?php echo $row['base_price']; ?></span>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
+                            <input type="number" class="form-control" placeholder="Enter your bid" min="<?php echo $row['current_bid'] + 1; ?>">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
+                                <button class="btn btn-primary bid-button" type="button" data-item-id="<?php echo $row['id']; ?>">Submit Bid</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card">
-                    <img src="images/auction/led tv2.png" class="card-img-top" alt="LED TV">
-                    <div class="card-body">
-                        <h5 class="card-title">Samsung LED TV</h5>
-                        <p class="card-text">Samsung old model LED FHD 52" tv. Manufactured in Korea</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $100</span>
-                            <span class="buy-now">Base Price: $90</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/led tv3.png" class="card-img-top" alt="LED TV">
-                    <div class="card-body">
-                        <h5 class="card-title">Bravia 66" Smart TV</h5>
-                        <p class="card-text">Sony Bravia 66" Smart 4K Google TV. Google Assistant</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $200</span>
-                            <span class="buy-now">Base Price: $150</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card">
-                    <img src="images/auction/led tv4.png" class="card-img-top" alt="LED TV">
-                    <div class="card-body">
-                        <h5 class="card-title">Aquas 55" Smart TV</h5>
-                        <p class="card-text">SHARP Aquas 55" smart FHD google tv, play store available.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $150</span>
-                            <span class="buy-now">Base Price: $120</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/led tv5.png" class="card-img-top" alt="LED TV">
-                    <div class="card-body">
-                        <h5 class="card-title">Bravia bazzle less TV</h5>
-                        <p class="card-text">Sony Bravia 66" bazzle less 4K smart google tv with playstore.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $400</span>
-                            <span class="buy-now">Base Price: $350</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/wall tv1.png" class="card-img-top" alt="Wall TV">
-                    <div class="card-body">
-                        <h5 class="card-title">LG 4K Smart Tv</h5>
-                        <p class="card-text">LG 4K smart google OLED tv 74" outstanding viewing experience.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $400</span>
-                            <span class="buy-now">Base Price: $350</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/wall tv2.png" class="card-img-top" alt="Frame Less TV">
-                    <div class="card-body">
-                        <h5 class="card-title">TCL FrameLess Smart TV</h5>
-                        <p class="card-text">TCL flagship series tv, frameless, smart google tv with playstore.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $500</span>
-                            <span class="buy-now">Base Price: $450</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/telephone1.png" class="card-img-top" alt="Old Telephone">
-                    <div class="card-body">
-                        <h5 class="card-title">Old Telephone</h5>
-                        <p class="card-text">British period used telephone1 for using home decoration.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $200</span>
-                            <span class="buy-now">Base Price: $150</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/telephone2.png" class="card-img-top" alt="Old Telephone">
-                    <div class="card-body">
-                        <h5 class="card-title">Old Telephone</h5>
-                        <p class="card-text">British period used telephone1 for using home decoration.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $200</span>
-                            <span class="buy-now">Base Price: $150</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/telephone3.png" class="card-img-top" alt="Old Telephone">
-                    <div class="card-body">
-                        <h5 class="card-title">Old Telephone</h5>
-                        <p class="card-text">British period used telephone1 for using home decoration.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $200</span>
-                            <span class="buy-now">Base Price: $150</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/telephone4.png" class="card-img-top" alt="Old Telephone">
-                    <div class="card-body">
-                        <h5 class="card-title">Old Telephone</h5>
-                        <p class="card-text">British period used telephone1 for using home decoration.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $200</span>
-                            <span class="buy-now">Base Price: $150</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/skuti.png" class="card-img-top" alt="Skutti">
-                    <div class="card-body">
-                        <h5 class="card-title">BMW Skutti 125cc</h5>
-                        <p class="card-text">Luxerious BMW Skutti 125cc for women in blue color.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $1900</span>
-                            <span class="buy-now">Base Price: $1550</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/mini bus.png" class="card-img-top" alt="Hiace">
-                    <div class="card-body">
-                        <h5 class="card-title">Toyota mini bus</h5>
-                        <p class="card-text">Toyota mini bus 1800cc for family trip, long tour.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $2800</span>
-                            <span class="buy-now">Base Price: $2150</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/truck.png" class="card-img-top" alt="Truck">
-                    <div class="card-body">
-                        <h5 class="card-title">Truck 2 Ton</h5>
-                        <p class="card-text">Mahindra Truck 2 Ton for factory or industry use.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $5100</span>
-                            <span class="buy-now">Base Price: $4550</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/football1.png" class="card-img-top" alt="WC22 Football">
-                    <div class="card-body">
-                        <h5 class="card-title">Football of WC22</h5>
-                        <p class="card-text">Addidas football used in FIFA WC22 Aus Vs Ned.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $10000</span>
-                            <span class="buy-now">Base Price: $8150</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/football2.png" class="card-img-top" alt="WC22 Football">
-                    <div class="card-body">
-                        <h5 class="card-title">Football of WC22</h5>
-                        <p class="card-text">Addidas football used in FIFA WC22 Aus Vs Ned.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $9000</span>
-                            <span class="buy-now">Base Price: $8850</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/fridge1.png" class="card-img-top" alt="Fridge">
-                    <div class="card-body">
-                        <h5 class="card-title">Media Fridge</h5>
-                        <p class="card-text">Media Fridge made in Japan latest technology.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $1000</span>
-                            <span class="buy-now">Base Price: $850</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/fridge2.png" class="card-img-top" alt="Fridge">
-                    <div class="card-body">
-                        <h5 class="card-title">Samsung 4Door Fridge</h5>
-                        <p class="card-text">Samsung Smart IOT built in, 4 door fridge.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $100</span>
-                            <span class="buy-now">Base Price: $150</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/fridge3.png" class="card-img-top" alt="Fridge">
-                    <div class="card-body">
-                        <h5 class="card-title">Samsung Smart Fridge</h5>
-                        <p class="card-text">Samsung Smart IOT built in, voice assistant in fridge.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $2800</span>
-                            <span class="buy-now">Base Price: $2150</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/jurcy.png" class="card-img-top" alt="Jursy">
-                    <div class="card-body">
-                        <h5 class="card-title">Argentina Jursy</h5>
-                        <p class="card-text">Argentina World Cup winning Jursy WC22.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $800</span>
-                            <span class="buy-now">Base Price: $650</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/radio1.png" class="card-img-top" alt="Old radio">
-                    <div class="card-body">
-                        <h5 class="card-title">Old Radio</h5>
-                        <p class="card-text">Old Radio for home decoration and show pice.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $400</span>
-                            <span class="buy-now">Base Price: $350</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/radio2.png" class="card-img-top" alt="Old Radio">
-                    <div class="card-body">
-                        <h5 class="card-title">Old Radio</h5>
-                        <p class="card-text">Old Radio for home decoration and show pice.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $400</span>
-                            <span class="buy-now">Base Price: $350</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4" >
-                <div class="card">
-                    <img src="images/auction/radio3.png" class="card-img-top" alt="Old Radio">
-                    <div class="card-body">
-                        <h5 class="card-title">Old Radio</h5>
-                        <p class="card-text">Old Radio for home decoration and show pice.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $400</span>
-                            <span class="buy-now">Base Price: $350</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card">
-                    <img src="images/auction/watch2.png" class="card-img-top" alt="Watch">
-                    <div class="card-body">
-                        <h5 class="card-title">Hublot Watch</h5>
-                        <p class="card-text">Hublot luxery watch for professionals.</p>
-                        <div class="price-info mb-2">
-                            <span class="current-bid">Current Bid: $5000</span>
-                            <span class="buy-now">Base Price: $4550</span>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="number" class="form-control" placeholder="Enter your bid">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">Submit Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php
+                }
+            } else {
+                echo "<p>No more auction items available.</p>";
+            }
+            ?>
         </div>
         <nav aria-label="Page navigation">
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="auction1.html">1</a></li>
-                <li class="page-item  active"><a class="page-link" href="auction2.html">2</a></li>
+                <li class="page-item"><a class="page-link" href="auction1.php">1</a></li>
+                <li class="page-item active"><a class="page-link" href="auction2.php">2</a></li>
             </ul>
         </nav>
     </div>
@@ -520,9 +114,49 @@ include 'header.php';
                 localStorage.removeItem('auctionEndTime');
             }
         }, 1000);
-        </script>
+    </script>
+    <script>
+        // Add this new script for handling bids
+        document.addEventListener('DOMContentLoaded', function() {
+            const bidButtons = document.querySelectorAll('.bid-button');
+            bidButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = this.getAttribute('data-item-id');
+                    const bidAmount = this.parentElement.previousElementSibling.value;
+                    
+                    if (bidAmount) {
+                        // Send bid to server (you'll need to implement this PHP script)
+                        fetch('place_bid.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                            },
+                            body: `item_id=${itemId}&bid_amount=${bidAmount}`
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('Bid placed successfully!');
+                                // Update the current bid display
+                                this.closest('.card-body').querySelector('.current-bid').textContent = `Current Bid: $${data.new_bid}`;
+                            } else {
+                                alert('Error placing bid: ' + data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('An error occurred while placing your bid.');
+                        });
+                    } else {
+                        alert('Please enter a valid bid amount.');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
 <?php
-include 'header.php';
+include 'footer.php';
+$conn->close();
 ?>
