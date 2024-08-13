@@ -16,6 +16,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Fetch the auction end time from the database
+$sql = "SELECT end_time FROM auction_settings WHERE id = 1";
+$result = $conn->query($sql);
+$auctionEndTime = $result->fetch_assoc()['end_time'];
+$endTimestamp = strtotime($auctionEndTime) * 1000; // Convert to milliseconds for JavaScript
+
+// Calculate time remaining
+$timeRemaining = strtotime($auctionEndTime) - time();
+
 // Fetch auction items from the database
 $sql = "SELECT * FROM auction_items";
 $result = $conn->query($sql);
@@ -31,7 +40,15 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="auction.css">
 </head>
 <body>
-    <div id="auctionTimer" class="text-center my-3"></div>
+    <div id="auctionTimer" class="text-center my-3">
+        <?php
+        if ($timeRemaining > 0) {
+            echo "Auction Ends In: " . gmdate("H:i:s", $timeRemaining);
+        } else {
+            echo "AUCTION ENDED";
+        }
+        ?>
+    </div>
     <div class="container my-5">
         <div class="row">
             <?php
@@ -72,48 +89,7 @@ $result = $conn->query($sql);
         </nav>
     </div>
     <script>
-        // Function to get the end time from localStorage or set a new one
-        function getOrSetEndTime() {
-            let endTime = localStorage.getItem('auctionEndTime');
-            if (!endTime) {
-                // Set end time to 24 hours from now if not already set
-                endTime = new Date().getTime() + 24 * 60 * 60 * 1000;
-                localStorage.setItem('auctionEndTime', endTime);
-            }
-            return parseInt(endTime);
-        }
-        
-        // Get or set the end time
-        var countDownDate = getOrSetEndTime();
-        
-        // Update the countdown every 1 second
-        var x = setInterval(function() {
-            // Get the current date and time
-            var now = new Date().getTime();
-        
-            // Find the distance between now and the countdown date
-            var distance = countDownDate - now;
-        
-            // Time calculations for hours, minutes and seconds
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-            // Display the result in the element with id="auctionTimer"
-            document.getElementById("auctionTimer").innerHTML = "Auction Ends In: " +
-            hours + "h " + minutes + "m " + seconds + "s ";
-        
-            // If the countdown is finished, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("auctionTimer").innerHTML = "AUCTION ENDED";
-                // Clear the end time from localStorage when auction ends
-                localStorage.removeItem('auctionEndTime');
-            }
-        }, 1000);
-    </script>
-    <script>
-        // Add this new script for handling bids
+        //handling bids
         document.addEventListener('DOMContentLoaded', function() {
             const bidButtons = document.querySelectorAll('.bid-button');
             bidButtons.forEach(button => {
@@ -122,7 +98,6 @@ $result = $conn->query($sql);
                     const bidAmount = this.parentElement.previousElementSibling.value;
                     
                     if (bidAmount) {
-                        // Send bid to server (you'll need to implement this PHP script)
                         fetch('place_bid.php', {
                             method: 'POST',
                             headers: {
@@ -150,6 +125,36 @@ $result = $conn->query($sql);
                 });
             });
         });
+    </script>
+    <script>
+        var countDownDate = <?php echo $endTimestamp; ?>;
+
+        function updateTimer() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("auctionTimer").innerHTML = "AUCTION ENDED";
+                // Disable all bid buttons
+                document.querySelectorAll('.bid-button').forEach(button => {
+                    button.disabled = true;
+                });
+            } else {
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("auctionTimer").innerHTML = "Auction Ends In: " +
+                    hours + "h " + minutes + "m " + seconds + "s ";
+            }
+        }
+
+        // Update the countdown every 1 second
+        var x = setInterval(updateTimer, 1000);
+
+        // Initial call to set the timer immediately
+        updateTimer();
     </script>
 </body>
 </html>

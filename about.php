@@ -57,7 +57,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Mirza Naeem Beg</h5>
                             <p class="card-text">Lead Developer</p>
-                            <p class="card-email">Portfolio: <a href="naeembeg.github.io" target="_blank">mirza-naeembeg.github.io</a></p>
+                            <p class="card-email">Portfolio: <a href="naeembeg.github.io" target="_blank">naeembeg.github.io</a></p>
                             <a href="https://www.linkedin.com/in/mirza-naeem-beg/" class="btn btn-outline-primary" target="_blank">LinkedIn</a>
                             <a href="https://github.com/naeembeg" class="btn btn-outline-dark" target="_blank">GitHub</a>
                             <a href="https://www.facebook.com/mrnimblenaeem/" class="btn btn-outline-primary" target="_blank">Facebook</a>
