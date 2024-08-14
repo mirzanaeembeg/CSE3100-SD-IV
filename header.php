@@ -99,7 +99,7 @@
                         </li>
                         <?php if (isset($_SESSION['user_id'])): ?>
                             <li class="nav-item">
-                                <a class="nav-link border1 nav-black" href="profile.php">
+                                <a class="nav-link border1 nav-black" href="personal_info.php">
                                     <i class="fas fa-user"></i> <big>Profile</big>
                                 </a>
                             </li>

@@ -7,13 +7,16 @@
     $message = '';
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $name = trim($_POST['name']);
         $username = trim($_POST['username']);
         $email = trim($_POST['email']);
+        $contact = trim($_POST['contact']);
+        $address = trim($_POST['address']);
         $password = $_POST['password'];
         $confirm_password = $_POST['confirm-password'];
 
         // Basic validation
-        if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
+        if (empty($name) || empty($username) || empty($email) || empty($contact) || empty($address) || empty($password) || empty($confirm_password)) {
             $message = "All fields are required.";
         } elseif ($password !== $confirm_password) {
             $message = "Passwords do not match.";
@@ -32,8 +35,8 @@
             }
 
             // Prepare and bind
-            $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $username, $email, $hashed_password);
+            $stmt = $conn->prepare("INSERT INTO users (name, username, email, contact, address, password) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssss", $name, $username, $email, $contact, $address, $hashed_password);
 
             // Execute the statement
             if ($stmt->execute()) {
@@ -59,12 +62,24 @@
                         <?php endif; ?>
                         <form action="registration.php" method="post">
                             <div class="mb-3">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="username" name="username" required>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="contact" class="form-label">Contact Number</label>
+                                <input type="tel" class="form-control" id="contact" name="contact" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address</label>
+                                <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>

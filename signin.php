@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $user_id = $GLOBALS['user_id'];
                 $_SESSION["username"] = $user['username'];
                 ob_start();
-                header("Location: profile.php");
+                header("Location: personal_info.php");
                 ob_end_clean();
                 exit();
             } else {
