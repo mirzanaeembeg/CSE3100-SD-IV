@@ -1,25 +1,20 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-// Start the session and include database connection
 session_start();
-require_once 'db_connection.php'; // Make sure you have this file with your database connection
+require_once 'db_connection.php';
 include 'header.php';
 
-// Check if user is logged in, if not redirect to login page
 if (!isset($_SESSION['user_id'])) {
     header("Location: signin.php");
     exit();
 }
 
-// Fetch user data
 $user_id = $_SESSION['user_id'];
+
+// Fetch user data
 $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+$user = $stmt->get_result()->fetch_assoc();
 
 // Fetch dashboard data
 $stmt = $conn->prepare("SELECT COUNT(*) as total_bids FROM bids WHERE user_id = ?");
@@ -39,25 +34,16 @@ $my_orders = $stmt->get_result()->fetch_assoc()['my_orders'];
 
 // Fetch orders data
 $sql = "
-    SELECT o.id AS order_id, a.title, a.category, o.order_price, o.order_time, o.quantity
+    SELECT o.id AS order_id, p.name, p.category, o.order_price, o.order_time, o.quantity, o.address, o.contact
     FROM orders o
-    JOIN auction_items a ON o.item_id = a.id
+    JOIN products p ON o.product_id = p.id
     WHERE o.user_id = ?
     ORDER BY o.order_time DESC
 ";
 
 $stmt = $conn->prepare($sql);
-
-if ($stmt === false) {
-    die("Error preparing statement: " . $conn->error);
-}
-
 $stmt->bind_param("i", $user_id);
-
-if (!$stmt->execute()) {
-    die("Error executing statement: " . $stmt->error);
-}
-
+$stmt->execute();
 $orders_result = $stmt->get_result();
 ?>
 
@@ -73,111 +59,115 @@ $orders_result = $stmt->get_result();
 </head>
 <body>
 <div class="container-fluid">
-        <div class="row">
-            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
-                <div class="position-sticky">
-                    <div class="profile-header text-center">
-                        <img src="<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture" class="profile-pic" id="profile-pic">
-                        <h3 class="profile-name"><?php echo htmlspecialchars($user['name']); ?></h3>
-                        <p class="profile-email"><?php echo htmlspecialchars($user['email']); ?></p>
-                        <form action="upload.php" method="post" enctype="multipart/form-data">
-                            <input type="file" name="profilePicture" id="profilePicture" class="form-control form-control-sm" onchange="document.getElementById('profile-pic').src = window.URL.createObjectURL(this.files[0])">
-                            <button type="submit" class="btn btn-light btn-sm mt-2">Upload</button>
-                        </form>
-                    </div>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="personal_info.php"><i class="fas fa-user me-2"></i><span>Personal Info</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="my_bids.php"><i class="fas fa-gavel me-2"></i><span>My Bids</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="winning_bids.php"><i class="fas fa-trophy me-2"></i><span>Winning Bids</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="my_orders.php"><i class="fas fa-shopping-cart me-2"></i><span>My Orders</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="signout.php"><i class="fas fa-sign-out-alt me-2"></i><span>Sign Out</span></a>
-                        </li>
-                    </ul>
+    <div class="row">
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
+            <div class="position-sticky">
+                <div class="profile-header text-center">
+                    <img src="<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture" class="profile-pic" id="profile-pic">
+                    <h3 class="profile-name"><?php echo htmlspecialchars($user['name']); ?></h3>
+                    <p class="profile-email"><?php echo htmlspecialchars($user['email']); ?></p>
+                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                        <input type="file" name="profilePicture" id="profilePicture" class="form-control form-control-sm" onchange="document.getElementById('profile-pic').src = window.URL.createObjectURL(this.files[0])">
+                        <button type="submit" class="btn btn-light btn-sm mt-2">Upload</button>
+                    </form>
                 </div>
-            </nav>
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="dashboard-card">
-                    <h3>Dashboard</h3>
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <div class="stat-card">
-                                <i class="fas fa-gavel text-primary"></i>
-                                <div class="stat-value" id="total-bids"><?php echo $total_bids; ?></div>
-                                <div>Total Bids</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="stat-card">
-                                <i class="fas fa-trophy text-success"></i>
-                                <div class="stat-value" id="winning-bids"><?php echo $winning_bids; ?></div>
-                                <div>Winning Bids</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="stat-card">
-                                <i class="fas fa-shopping-cart text-info"></i>
-                                <div class="stat-value" id="my-orders"><?php echo $my_orders; ?></div>
-                                <div>My Orders</div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <div class="stat-card">
-                                <i class="fas fa-coins text-warning"></i>
-                                <div class="stat-value" id="credits"><?php echo number_format($user['credit'], 2); ?></div>
-                                <div>Credits</div>
-                            </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="personal_info.php"><i class="fas fa-user me-2"></i><span>Personal Info</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="my_bids.php"><i class="fas fa-gavel me-2"></i><span>My Bids</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="winning_bids.php"><i class="fas fa-trophy me-2"></i><span>Winning Bids</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="my_orders.php"><i class="fas fa-shopping-cart me-2"></i><span>My Orders</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="signout.php"><i class="fas fa-sign-out-alt me-2"></i><span>Sign Out</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="dashboard-card">
+                <h3>Dashboard</h3>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="stat-card">
+                            <i class="fas fa-gavel text-primary"></i>
+                            <div class="stat-value" id="total-bids"><?php echo $total_bids; ?></div>
+                            <div>Total Bids</div>
                         </div>
                     </div>
-                </div>
-                <div class="my-orders-card">
-                    <h3>My Orders</h3>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>Product Name</th>
-                                    <th>Category</th>
-                                    <th>Price</th>
-                                    <th>Order Time</th>
-                                    <th>Quantity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                if ($orders_result->num_rows > 0) {
-                                    while ($row = $orders_result->fetch_assoc()) {
-                                        echo "<tr>";
-                                        echo "<td>" . htmlspecialchars($row['order_id']) . "</td>";
-                                        echo "<td>" . htmlspecialchars($row['title']) . "</td>";
-                                        echo "<td>" . htmlspecialchars($row['category']) . "</td>";
-                                        echo "<td>$" . number_format($row['order_price'], 2) . "</td>";
-                                        echo "<td>" . date("Y-m-d H:i:s", strtotime($row['order_time'])) . "</td>";
-                                        echo "<td>" . htmlspecialchars($row['quantity']) . "</td>";
-                                        echo "</tr>";
-                                    }
-                                } else {
-                                    echo "<tr><td colspan='6'>No orders found.</td></tr>";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
+                    <div class="col-md-4 mb-3">
+                        <div class="stat-card">
+                            <i class="fas fa-trophy text-success"></i>
+                            <div class="stat-value" id="winning-bids"><?php echo $winning_bids; ?></div>
+                            <div>Winning Bids</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="stat-card">
+                            <i class="fas fa-shopping-cart text-info"></i>
+                            <div class="stat-value" id="my-orders"><?php echo $my_orders; ?></div>
+                            <div>My Orders</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="stat-card">
+                            <i class="fas fa-coins text-warning"></i>
+                            <div class="stat-value" id="credits"><?php echo number_format($user['credit'], 2); ?></div>
+                            <div>Credits</div>
+                        </div>
                     </div>
                 </div>
-            </main>
-        </div>
+            </div>
+            <div class="my-orders-card">
+                <h3>My Orders</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Order Time</th>
+                                <th>Quantity</th>
+                                <th>Address</th>
+                                <th>Contact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        if ($orders_result->num_rows > 0) {
+                            while ($row = $orders_result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($row['order_id']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['category']) . "</td>";
+                                echo "<td>$" . number_format($row['order_price'], 2) . "</td>";
+                                echo "<td>" . date("Y-m-d H:i:s", strtotime($row['order_time'])) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['quantity']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['address']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['contact']) . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='8'>No orders found.</td></tr>";
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 <?php

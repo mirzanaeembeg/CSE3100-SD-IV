@@ -69,7 +69,7 @@
                             <option value="shoes.php"><b>Shoes</b></option>
                             <option value="smartphone.php"><b>Smartphone</b></option>
                             <option value="sports.php"><b>Sports</b></option>
-                            <option value="books.php"><b>books</b></option>
+                            <option value="books.php"><b>Books</b></option>
                             <option value="homeappliance.php"><b>Home Appliance</b></option>
                             <option value="grocery.php"><b>Grocery</b></option>
                             <option value="gadgets.php"><b>Gadgets</b></option>
