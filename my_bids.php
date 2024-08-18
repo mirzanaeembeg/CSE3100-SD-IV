@@ -29,7 +29,7 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $winning_bids = $stmt->get_result()->fetch_assoc()['winning_bids'];
 
-$stmt = $conn->prepare("SELECT COUNT(*) as my_orders FROM user_items WHERE user_id = ?");
+$stmt = $conn->prepare("SELECT COUNT(*) as my_orders FROM orders WHERE user_id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $my_orders = $stmt->get_result()->fetch_assoc()['my_orders'];
