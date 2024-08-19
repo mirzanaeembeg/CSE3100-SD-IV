@@ -3,13 +3,12 @@ session_start();
 include 'header.php';
 require_once 'db_connection.php';
 
-if (!isset($_SESSION['user_id']) || !isset($_POST['product_id'])) {
-    header("Location: index.php");
+if (!isset($_SESSION['user_id'])) {
+    header("Location: signin.php");
     exit();
 }
 
 $user_id = $_SESSION['user_id'];
-$product_id = $_POST['product_id'];
 
 // Fetch user data
 $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
@@ -17,11 +16,21 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $user = $stmt->get_result()->fetch_assoc();
 
-// Fetch product data
-$stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
-$stmt->bind_param("i", $product_id);
+// Fetch cart items
+$sql = "SELECT c.id as cart_id, p.id as product_id, p.name, p.category, p.price, c.quantity 
+        FROM cart c 
+        JOIN products p ON c.product_id = p.id 
+        WHERE c.user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
 $stmt->execute();
-$product = $stmt->get_result()->fetch_assoc();
+$result = $stmt->get_result();
+$cart_items = $result->fetch_all(MYSQLI_ASSOC);
+
+$total_price = 0;
+foreach ($cart_items as $item) {
+    $total_price += $item['price'] * $item['quantity'];
+}
 
 ?>
 
@@ -37,7 +46,6 @@ $product = $stmt->get_result()->fetch_assoc();
     <div class="container mt-5">
         <h1>Order Verification</h1>
         <form action="process_order.php" method="post">
-            <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" class="form-control" id="name" value="<?php echo htmlspecialchars($user['name']); ?>" readonly>
@@ -54,14 +62,33 @@ $product = $stmt->get_result()->fetch_assoc();
                 <label for="contact" class="form-label">Contact</label>
                 <input type="text" class="form-control" id="contact" name="contact" required>
             </div>
-            <div class="mb-3">
-                <label for="quantity" class="form-label">Quantity</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1" required>
-            </div>
-            <div class="mb-3">
-                <label for="price" class="form-label">Price</label>
-                <input type="number" class="form-control" id="price" name="price" value="<?php echo $product['price']; ?>" step="0.01" required>
-            </div>
+            <h3>Order Summary</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($cart_items as $item): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($item['name']); ?></td>
+                            <td><?php echo $item['quantity']; ?></td>
+                            <td>$<?php echo number_format($item['price'], 2); ?></td>
+                            <td>$<?php echo number_format($item['price'] * $item['quantity'], 2); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3">Total</th>
+                        <th>$<?php echo number_format($total_price, 2); ?></th>
+                    </tr>
+                </tfoot>
+            </table>
             <button type="submit" class="btn btn-primary">Confirm Order</button>
         </form>
     </div>

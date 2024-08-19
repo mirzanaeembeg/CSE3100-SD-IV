@@ -1,12 +1,16 @@
 <?php
 session_start();
-include 'header.php';
+require_once 'auth_check.php';
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
+if (!check_auth()) {
     header("Location: signin.php");
     exit();
 }
+
+$page_title = "Auction - BechaKena"; // Set this appropriately for each page
+include 'header.php';
+
+$user_id = $_SESSION['user_id'];
 
 // Database connection
 $servername = "localhost";
@@ -66,7 +70,6 @@ $winning_bids = $bid_data['winning_bids'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auction - BechaKena</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="auction.css">
 </head>

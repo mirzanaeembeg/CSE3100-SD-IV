@@ -1,4 +1,5 @@
 <?php
+session_start();
 $page_title = "Shoes";
 include 'header.php';
 require_once 'db_connection.php';
@@ -61,9 +62,9 @@ $shoes = $result->fetch_all(MYSQLI_ASSOC);
                     <img src="<?php echo htmlspecialchars($shoe['image_url']); ?>" alt="<?php echo htmlspecialchars($shoe['name']); ?>">
                     <h5><?php echo htmlspecialchars($shoe['name']); ?></h5>
                     <p class="price">$<?php echo number_format($shoe['price'], 2); ?></p>
-                    <form action="order_verification.php" method="post">
+                    <form action="add_to_cart.php" method="post">
                         <input type="hidden" name="product_id" value="<?php echo $shoe['id']; ?>">
-                        <button type="submit" class="buy-now">Buy Now</button>
+                        <button type="submit" class="buy-now">Add to Cart</button>
                     </form>
                 </div>
             </div>

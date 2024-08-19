@@ -1,31 +1,18 @@
 <?php
 session_start();
-// Start output buffering
-ob_start();
+ob_start(); // Start output buffering
 
 $page_title = "Sign In - BechaKena";
-// Include header after starting the session
-include 'header.php';
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-$message = '';
+require_once 'db_connection.php'; // Ensure this file exists and contains your database connection logic
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST["username"]);
     $password = $_POST["password"];
 
     if (empty($username) || empty($password)) {
-        $message = "Both username and password are required!";
+        $error_message = "Both username and password are required!";
     } else {
-        // Database connection
-        $conn = new mysqli("localhost", "root", "", "bechakenaDB");
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
         $sql = "SELECT id, username, password FROM users WHERE username = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $username);
@@ -36,31 +23,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $result->fetch_assoc();
             if (password_verify($password, $user['password'])) {
                 $_SESSION["user_id"] = $user['id'];
-                $GLOBALS["user_id"]= $user["id"];
-                $user_id = $GLOBALS['user_id'];
                 $_SESSION["username"] = $user['username'];
-                ob_start();
-                header("Location: personal_info.php");
-                ob_end_clean();
+                
+                if (isset($_SESSION['redirect_url'])) {
+                    $redirect_url = $_SESSION['redirect_url'];
+                    unset($_SESSION['redirect_url']);
+                    header("Location: " . $redirect_url);
+                } else {
+                    header("Location: personal_info.php");
+                }
                 exit();
             } else {
-                $message = "Invalid username or password";
+                $error_message = "Invalid username or password";
             }
         } else {
-            $message = "Invalid username or password";
+            $error_message = "Invalid username or password";
         }
 
         $stmt->close();
-        $conn->close();
     }
 }
+
+// Include header after processing to avoid header issues
+include 'header.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SignIn - BechaKena</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="signin.css">
 </head>
@@ -72,8 +64,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="col-md-6 form-container d-flex flex-column justify-content-center">
                 <h2 class="text-center mb-4">Sign In</h2>
-                <?php if (!empty($message)) : ?>
-                    <div class="alert alert-danger"><?php echo $message; ?></div>
+                <?php if (isset($_SESSION['message'])): ?>
+                    <div class="alert alert-info" role="alert">
+                        <?php 
+                        echo htmlspecialchars($_SESSION['message']); 
+                        unset($_SESSION['message']);
+                        ?>
+                    </div>
+                <?php endif; ?>
+                <?php if (isset($error_message)): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo htmlspecialchars($error_message); ?>
+                    </div>
                 <?php endif; ?>
                 <form action="signin.php" method="post">
                     <div class="form-group mb-3">
@@ -93,11 +95,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
+
 <?php
 include 'footer.php';
-
-// End output buffering and send output
-ob_end_flush();
+ob_end_flush(); // End output buffering and flush
 ?>

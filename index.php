@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-lg custom-navbar-bg">
             <div class="container-fluid">
-            <a class="navbar-brand border1" href="index.php"><img src="logo.png" alt="Logo" class="img-fluid"></a>
+                <a class="navbar-brand border1" href="index.php"><img src="logo.png" alt="BechaKena Logo" class="img-fluid"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -24,46 +24,53 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="d-flex w-40 nav-search">
+                    <form class="d-flex w-40 nav-search" action="search.php" method="GET">
                     <select class="form-select me-2 border1" id="categorySelect" onchange="navigateToPage()">
-                        <option selected disabled><b>All</b></option>
-                        <option value="shoes.php"><b>Shoes</b></option>
-                        <option value="smartphone.php"><b>Smartphone</b></option>
-                        <option value="sports.php"><b>Sports</b></option>
-                        <option value="books.php"><b>books</b></option>
-                        <option value="homeappliance.php"><b>Home Appliance</b></option>
-                        <option value="grocery.php"><b>Grocery</b></option>
-                        <option value="gadgets.php"><b>Gadgets</b></option>
-                        <option value="personalcare.php"><b>Personal Care</b></option>
-                        <option value="auction1.php"><b>Auct-Goods</b></option>
-                        <option value="chocolates.php"><b>Chocolates</b></option>
-                        <option value="paints.php"><b>Paints</b></option>
-                        <option value="toys.php"><b>Toys</b></option>
-                        <option value="artncraft.php"><b>Art & Craft</b></option>
-                        <option value="pets.php"><b>Pets</b></option>
-                        <option value="fashion.php"><b>Fashion</b></option>
-                        <option value="furniture.php"><b>Furniture</b></option>
-                        <!-- Add more categories here as needed -->
-                    </select>
-                        <input class="form-control me-2 border1" type="search" placeholder="Search on BechaKena" aria-label="Search">
+                            <option selected disabled><b>All Categories</b></option>
+                            <option value="shoes.php"><b>Shoes</b></option>
+                            <option value="smartphone.php"><b>Smartphone</b></option>
+                            <option value="sports.php"><b>Sports</b></option>
+                            <option value="books.php"><b>Books</b></option>
+                            <option value="homeappliance.php"><b>Home Appliance</b></option>
+                            <option value="grocery.php"><b>Grocery</b></option>
+                            <option value="gadgets.php"><b>Gadgets</b></option>
+                            <option value="personalcare.php"><b>Personal Care</b></option>
+                            <option value="auction1.php"><b>Auct-Goods</b></option>
+                            <option value="chocolates.php"><b>Chocolates</b></option>
+                            <option value="paints.php"><b>Paints</b></option>
+                            <option value="toys.php"><b>Toys</b></option>
+                            <option value="artncraft.php"><b>Art & Craft</b></option>
+                            <option value="pets.php"><b>Pets</b></option>
+                            <option value="fashion.php"><b>Fashion</b></option>
+                            <option value="furniture.php"><b>Furniture</b></option>
+                        </select>
+                        <input class="form-control me-2 border1" type="search" name="query" placeholder="Search on BechaKena" aria-label="Search">
                         <button class="btn btn-outline-success border1 navbarx" type="submit"><big>Search</big></button>
-                    </div>
+                    </form>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link border1" href="orders.php">
+                            <a class="nav-link border1 nav-black" href="orders.php">
                                 <i class="fas fa-clipboard-list"></i> <big>Order</big>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link border1" href="cart.php">
+                            <a class="nav-link border1 nav-black" href="cart.php">
                                 <i class="fas fa-shopping-cart"></i> <big>Cart</big>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link border1" href="signin.php">
-                                <i class="fas fa-sign-in-alt"></i> <big>Sign In</big>
-                            </a>
-                        </li>
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <li class="nav-item">
+                                <a class="nav-link border1 nav-black" href="personal_info.php">
+                                    <i class="fas fa-user"></i> <big>Profile</big>
+                                </a>
+                            </li>
+                        <?php else: ?>
+                            <li class="nav-item">
+                                <a class="nav-link border1 nav-black" href="signin.php">
+                                    <i class="fas fa-sign-in-alt"></i> <big>Sign In</big>
+                                </a>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>

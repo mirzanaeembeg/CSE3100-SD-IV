@@ -1,14 +1,14 @@
 <?php
 session_start();
-$page_title = "Orders";
-include 'header.php';
-require_once 'db_connection.php';
+require_once 'auth_check.php';
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
+if (!check_auth()) {
     header("Location: signin.php");
     exit();
 }
+
+$page_title = "Orders - BechaKena"; // Set this appropriately for each page
+include 'header.php';
 
 $user_id = $_SESSION['user_id'];
 
