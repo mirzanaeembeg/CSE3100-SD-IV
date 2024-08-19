@@ -1,6 +1,14 @@
 <?php
+session_start();
 $page_title = "Furniture";
 include 'header.php';
+require_once 'db_connection.php';
+
+// Fetch shoes from the database
+$stmt = $conn->prepare("SELECT * FROM products WHERE category = 'furniture'");
+$stmt->execute();
+$result = $stmt->get_result();
+$shoes = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -8,8 +16,7 @@ include 'header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BechaKena - Furniture</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .product-card {
             border: 1px solid #ddd;
@@ -20,7 +27,7 @@ include 'header.php';
         }
         .product-card img {
             max-width: 100%;
-            height: auto;
+            height: 300px;
             margin-bottom: 10px;
         }
         .product-card h5 {
@@ -48,136 +55,19 @@ include 'header.php';
     <div class="container">
         <h1 class="display-4">Furniture</h1>
         <div class="row">
-            <!-- Example shoe product card -->
+            <?php foreach ($shoes as $shoe): ?>
             <div class="col-md-3">
                 <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
+                    <img src="<?php echo htmlspecialchars($shoe['image_url']); ?>" alt="<?php echo htmlspecialchars($shoe['name']); ?>">
+                    <h5><?php echo htmlspecialchars($shoe['name']); ?></h5>
+                    <p class="price">$<?php echo number_format($shoe['price'], 2); ?></p>
+                    <form action="add_to_cart.php" method="post">
+                        <input type="hidden" name="product_id" value="<?php echo $shoe['id']; ?>">
+                        <button type="submit" class="buy-now">Add to Cart</button>
+                    </form>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="shoe1.jpg" alt="Shoe 1">
-                    <h5>Product Name 1</h5>
-                    <p class="price">$100</p>
-                    <button class="buy-now">Buy Now</button>
-                </div>
-            </div>
-            <!-- Add more shoe products similarly -->
+            <?php endforeach; ?>
         </div>
     </div>
 </body>
