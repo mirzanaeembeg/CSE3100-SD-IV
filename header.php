@@ -37,7 +37,6 @@ $page_title = isset($page_title) ? $page_title : "BechaKena";
             align-items: center;
         }
         .navbarx {
-            background-color: #ddd !important;
             font-size: large;
             font-weight: 500;
         }

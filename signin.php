@@ -2,7 +2,7 @@
 session_start();
 ob_start(); // Start output buffering
 
-$page_title = "Sign In - BechaKena";
+$page_title = "Sign In";
 
 require_once 'db_connection.php'; // Ensure this file exists and contains your database connection logic
 
