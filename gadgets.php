@@ -53,7 +53,7 @@ $shoes = $result->fetch_all(MYSQLI_ASSOC);
 </head>
 <body>
     <div class="container">
-        <h1 class="display-4">Gadgets</h1>
+        <h1 class="display-4 text-center">Gadgets</h1>
         <div class="row">
             <?php foreach ($shoes as $shoe): ?>
             <div class="col-md-3">

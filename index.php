@@ -1,3 +1,14 @@
+<?php
+session_start();
+require_once 'db_connection.php';
+
+// Fetch flash deals from the products table
+$stmt = $conn->prepare("SELECT * FROM products WHERE category = 'flash_deals'");
+$stmt->execute();
+$result = $stmt->get_result();
+$flash_deals = $result->fetch_all(MYSQLI_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -266,182 +277,18 @@
         <h2>Flash Deals</h2>
         <div class="container-fluid">
             <div class="row g-0">
+                <?php foreach ($flash_deals as $deal): ?>
                 <div class="col-md-3">
                     <div class="card flash-deal-card">
-                        <img src="images/flashdeals/100 dollar start up.jpg" class="card-img-top" alt="100 dollar start up">
+                        <img src="<?php echo htmlspecialchars($deal['image_url']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($deal['name']); ?>">
                         <div class="card-body">
-                            <h5 class="card-title">100$ Start Up</h5>
-                            <p class="card-text">Lead a life of adventure, meaning and purpose—and earn a good living.</p>
-                            <p class="card-price">$19.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
+                            <h5 class="card-title"><?php echo htmlspecialchars($deal['name']); ?></h5>
+                            <p class="card-price">$<?php echo number_format($deal['price'], 2); ?></p>
+                            <a href="add_to_cart.php?id=<?php echo $deal['id']; ?>" class="btn btn-primary">Buy Now</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/airpod.jpg" class="card-img-top" alt="airpod">
-                        <div class="card-body">
-                            <h5 class="card-title">Airpod</h5>
-                            <p class="card-text">The AirPods Pro 2nd generation MADE IN DUBAI Bluetooth Earbuds.</p>
-                            <p class="card-price">$29.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/birthdaydecoration pack.png" class="card-img-top" alt="birthday pack">
-                        <div class="card-body">
-                            <h5 class="card-title">Birthday Decoration Pack</h5>
-                            <p class="card-text">Helpful for quick decorating a place for someone's birthday celebration.</p>
-                            <p class="card-price">$39.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/blackshari with ornaments.png" class="card-img-top" alt="Shari combo">
-                        <div class="card-body">
-                            <h5 class="card-title">Black Shari Combo</h5>
-                            <p class="card-text">Saree Bangles Necklace Earrings Mehedi Mirror Chocolate Gazra etc.</p>
-                            <p class="card-price">$49.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/chiaseeds.png" class="card-img-top" alt="chiaseeds">
-                        <div class="card-body">
-                            <h5 class="card-title">Chiaseeds</h5>
-                            <p class="card-text">Quantity : 1 kg Origin: UK. Pure and Fresh Grocery Item. Good for your healthy life.</p>
-                            <p class="card-price">$19.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/facewash.jpg" class="card-img-top" alt="face wash">
-                        <div class="card-body">
-                            <h5 class="card-title">Face Wash</h5>
-                            <p class="card-text">This is a Bioaqua Papaya Moisturizing Face Wash -100G.</p>
-                            <p class="card-price">$29.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/fat cutter detox powder.jpg" class="card-img-top" alt="detox powder">
-                        <div class="card-body">
-                            <h5 class="card-title">Detox Powder</h5>
-                            <p class="card-text">This is a fat cutter detox powder for Weight losing.</p>
-                            <p class="card-price">$39.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/laptopdesk.jpg" class="card-img-top" alt="laptop desk">
-                        <div class="card-body">
-                            <h5 class="card-title">Laptop Desk</h5>
-                            <p class="card-text">Foldable and portable laptop table stand.• Multi-purpose: study table, bed table.</p>
-                            <p class="card-price">$49.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/moneybag.jpg" class="card-img-top" alt="money bag">
-                        <div class="card-body">
-                            <h5 class="card-title">Money Bag</h5>
-                            <p class="card-text">High Quality New Fashion Retro PU Leather Short Wallet Men.</p>
-                            <p class="card-price">$19.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/photoframe.jpg" class="card-img-top" alt="photoframe">
-                        <div class="card-body">
-                            <h5 class="card-title">Photoframe</h5>
-                            <p class="card-text">Elevate Your Wall Decor with the Fiber Art Photo Frame: A Captivating Canvas.</p>
-                            <p class="card-price">$29.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/rechargeable fan.jpg" class="card-img-top" alt="rechargeable fan">
-                        <div class="card-body">
-                            <h5 class="card-title">Rechargeable Mini Fan</h5>
-                            <p class="card-text">JY-2218 Professional Rechargeable Portable Mini Table Fan .</p>
-                            <p class="card-price">$39.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/slipper sandal.jpg" class="card-img-top" alt="sandal">
-                        <div class="card-body">
-                            <h5 class="card-title">Slipper Sandal</h5>
-                            <p class="card-text">Stylish Black, Yellow, Green and White Color Slides Slipper SUNZTONZ Light Weight.</p>
-                            <p class="card-price">$49.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/sunglass.jpg" class="card-img-top" alt="sunglass">
-                        <div class="card-body">
-                            <h5 class="card-title">Sunglass</h5>
-                            <p class="card-text">New Men Fashionable Sunglasses Black Vision Driving Party Best Sunglasses.</p>
-                            <p class="card-price">$19.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/trimmer.jpg" class="card-img-top" alt="trimmer">
-                        <div class="card-body">
-                            <h5 class="card-title">Trimmer</h5>
-                            <p class="card-text">Vintage T9 Electric Hair Cutting Machine Rechargeable T9 Hair Clipper.</p>
-                            <p class="card-price">$29.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/tshirt.jpg" class="card-img-top" alt="t-shirt">
-                        <div class="card-body">
-                            <h5 class="card-title">T-Shirt</h5>
-                            <p class="card-text">NEW Stylish Premium Quality Fashionable POLO Shirt For Men.</p>
-                            <p class="card-price">$39.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card flash-deal-card">
-                        <img src="images/flashdeals/zero to one book.jpg" class="card-img-top" alt="0 to 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Zero to One</h5>
-                            <p class="card-text">Zero to One: Notes on Startups, or How to Build the Future.</p>
-                            <p class="card-price">$49.99</p>
-                            <a href="#" class="btn btn-primary">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </main>
