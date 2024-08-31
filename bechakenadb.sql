@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2024 at 01:36 PM
+-- Generation Time: Aug 31, 2024 at 11:36 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -151,6 +151,43 @@ CREATE TABLE `cart` (
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`) VALUES
 (3, 3, 16, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hot_deals`
+--
+
+CREATE TABLE `hot_deals` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `original_price` decimal(10,2) NOT NULL,
+  `discounted_price` decimal(10,2) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `hot_deals`
+--
+
+INSERT INTO `hot_deals` (`id`, `product_id`, `original_price`, `discounted_price`, `start_date`, `end_date`) VALUES
+(17, 1, 100.00, 80.00, '2024-08-01', '2024-09-30'),
+(18, 2, 120.00, 95.00, '2024-08-01', '2024-09-30'),
+(19, 3, 140.00, 105.00, '2024-08-01', '2024-09-30'),
+(20, 4, 160.00, 120.00, '2024-08-01', '2024-09-30'),
+(21, 5, 180.00, 135.00, '2024-08-01', '2024-09-30'),
+(22, 6, 200.00, 150.00, '2024-08-01', '2024-09-30'),
+(23, 7, 220.00, 170.00, '2024-08-01', '2024-09-30'),
+(24, 8, 240.00, 190.00, '2024-08-01', '2024-09-30'),
+(25, 9, 260.00, 200.00, '2024-08-01', '2024-09-30'),
+(26, 10, 280.00, 210.00, '2024-08-01', '2024-09-30'),
+(27, 11, 300.00, 220.00, '2024-08-01', '2024-09-30'),
+(28, 12, 320.00, 240.00, '2024-08-01', '2024-09-30'),
+(29, 13, 340.00, 260.00, '2024-08-01', '2024-09-30'),
+(30, 14, 360.00, 270.00, '2024-08-01', '2024-09-30'),
+(31, 15, 380.00, 290.00, '2024-08-01', '2024-09-30'),
+(32, 16, 400.00, 300.00, '2024-08-01', '2024-09-30');
 
 -- --------------------------------------------------------
 
@@ -435,7 +472,39 @@ INSERT INTO `products` (`id`, `name`, `category`, `price`, `image_url`) VALUES
 (237, 'Linux CommandLine', 'book', 39.00, 'images/products/Books/13.jpg'),
 (238, 'Python Crash Course', 'book', 41.00, 'images/products/Books/14.jpg'),
 (239, 'Python for DataAnalysis', 'book', 43.00, 'images/products/Books/15.jpg'),
-(240, 'DataScience From Scratch', 'book', 45.00, 'images/products/Books/16.jpg');
+(240, 'DataScience From Scratch', 'book', 45.00, 'images/products/Books/16.jpg'),
+(241, 'Hot Deal 1', 'Hot Deals', 100.00, 'images/products/Hot Deals/1.jpg'),
+(242, 'Hot Deal 2', 'Hot Deals', 120.00, 'images/products/Hot Deals/2.jpg'),
+(243, 'Hot Deal 3', 'Hot Deals', 140.00, 'images/products/Hot Deals/3.jpg'),
+(244, 'Hot Deal 4', 'Hot Deals', 160.00, 'images/products/Hot Deals/4.jpg'),
+(245, 'Hot Deal 5', 'Hot Deals', 180.00, 'images/products/Hot Deals/5.jpg'),
+(246, 'Hot Deal 6', 'Hot Deals', 200.00, 'images/products/Hot Deals/6.jpg'),
+(247, 'Hot Deal 7', 'Hot Deals', 220.00, 'images/products/Hot Deals/7.jpg'),
+(248, 'Hot Deal 8', 'Hot Deals', 240.00, 'images/products/Hot Deals/8.jpg'),
+(249, 'Hot Deal 9', 'Hot Deals', 260.00, 'images/products/Hot Deals/9.jpg'),
+(250, 'Hot Deal 10', 'Hot Deals', 280.00, 'images/products/Hot Deals/10.jpg'),
+(251, 'Hot Deal 11', 'Hot Deals', 300.00, 'images/products/Hot Deals/11.jpg'),
+(252, 'Hot Deal 12', 'Hot Deals', 320.00, 'images/products/Hot Deals/12.jpg'),
+(253, 'Hot Deal 13', 'Hot Deals', 340.00, 'images/products/Hot Deals/13.jpg'),
+(254, 'Hot Deal 14', 'Hot Deals', 360.00, 'images/products/Hot Deals/14.jpg'),
+(255, 'Hot Deal 15', 'Hot Deals', 380.00, 'images/products/Hot Deals/15.jpg'),
+(256, 'Hot Deal 16', 'Hot Deals', 400.00, 'images/products/Hot Deals/16.jpg'),
+(257, 'Bed Sheet 1', 'flash_deals', 50.99, 'images/products/FlashDeals/1.jpg'),
+(258, 'Bed Sheet 2', 'flash_deals', 45.99, 'images/products/FlashDeals/2.jpg'),
+(259, 'Bed Sheet 3', 'flash_deals', 40.99, 'images/products/FlashDeals/3.jpg'),
+(260, 'Smart Band', 'flash_deals', 35.99, 'images/products/FlashDeals/4.jpg'),
+(261, 'Amazefit GT3', 'flash_deals', 30.99, 'images/products/FlashDeals/5.jpg'),
+(262, 'Sports Cap 1', 'flash_deals', 25.99, 'images/products/FlashDeals/6.jpg'),
+(263, 'Sports Cap 2', 'flash_deals', 20.99, 'images/products/FlashDeals/7.jpg'),
+(264, 'Sports Cap 3', 'flash_deals', 15.99, 'images/products/FlashDeals/8.jpg'),
+(265, 'Stylish Mug', 'flash_deals', 10.99, 'images/products/FlashDeals/9.jpg'),
+(266, 'Cofee Mug', 'flash_deals', 55.99, 'images/products/FlashDeals/10.jpg'),
+(267, 'Mug for Baby', 'flash_deals', 60.99, 'images/products/FlashDeals/11.jpg'),
+(268, 'Laptop Accessories', 'flash_deals', 65.99, 'images/products/FlashDeals/12.jpg'),
+(269, 'Philips Trimmer', 'flash_deals', 70.99, 'images/products/FlashDeals/13.jpg'),
+(270, 'Oral-B Set', 'flash_deals', 75.99, 'images/products/FlashDeals/14.jpg'),
+(271, 'Menicure Set', 'flash_deals', 80.99, 'images/products/FlashDeals/15.jpg'),
+(272, 'Ace The DS Interview', 'flash_deals', 85.99, 'images/products/FlashDeals/16.jpg');
 
 -- --------------------------------------------------------
 
@@ -495,6 +564,13 @@ ALTER TABLE `cart`
   ADD KEY `product_id` (`product_id`);
 
 --
+-- Indexes for table `hot_deals`
+--
+ALTER TABLE `hot_deals`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -545,6 +621,12 @@ ALTER TABLE `cart`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `hot_deals`
+--
+ALTER TABLE `hot_deals`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
@@ -554,7 +636,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=273;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -578,6 +660,12 @@ ALTER TABLE `bids`
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
+
+--
+-- Constraints for table `hot_deals`
+--
+ALTER TABLE `hot_deals`
+  ADD CONSTRAINT `hot_deals_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
 -- Constraints for table `orders`
