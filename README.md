@@ -79,19 +79,32 @@ cd bechakena
 
 The `next_auction.php` page displays a countdown timer for the next auction. The timer updates every second to show the remaining time.
 
-![Next Auction Countdown](path/to/next_auction_screenshot.png) <!-- Update the path to your screenshot -->
+![Next Auction Countdown](path/to/next_auction_screenshot.png) 
 
 ### My Orders
 
 The `my_orders.php` page allows users to view their order history. It includes details such as order ID, product name, category, price, order time, quantity, address, and contact information.
 
-![My Orders](path/to/my_orders_screenshot.png) <!-- Update the path to your screenshot -->
+![My Orders](path/to/my_orders_screenshot.png)
 
 ### Profile Management
 
 Users can update their profile picture and personal information. The profile section also displays user stats such as total bids, winning bids, and available credits.
 
-![Profile Management](path/to/profile_management_screenshot.png) <!-- Update the path to your screenshot -->
+### Screenshots
+
+<img src="assets/assets/Screenshot_6.png" alt="GUI Screenshot 6" width="700" />
+
+<div style="display: flex; gap: 10px; justify-content: center;">
+    <img src="assets/assets/Screenshot_2.png" alt="GUI Screenshot 6" width="400" />
+    <img src="assets/assets/Screenshot_3.png" alt="GUI Screenshot 7" width="400" />
+</div>
+
+<div style="display: flex; gap: 10px; justify-content: center;">
+    <img src="assets/assets/Screenshot_4.png" alt="GUI Screenshot 6" width="400" />
+    <img src="assets/assets/Screenshot_5.png" alt="GUI Screenshot 7" width="400" />
+</div>
+
 
 ## Contributing
 
