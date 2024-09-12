@@ -1,3 +1,6 @@
+Here's an updated version of your README file with the additions you requested:
+
+---
 
 # BechaKena - E-Commerce and Auction Platform
 
@@ -28,14 +31,19 @@ BechaKena is a dynamic e-commerce platform that integrates auction capabilities 
 - **Database Management**:
   - Redis (for caching and session management)
 
+## Dependencies
+
+### Required Downloads/Installations
+
+- **PHP**: Version 7.4 or higher
+- **MySQL**: Version 5.7 or higher
+- **Composer**: For dependency management, you can download it from [Composer's official website](https://getcomposer.org/download/).
+- **Redis**: For caching and session management, install Redis from [Redis.io](https://redis.io/download).
+
+### Additional Libraries
+- Make sure to run `composer install` after setting up the project to install required libraries.
+
 ## Installation
-
-### Prerequisites
-
-- PHP 7.4 or higher
-- MySQL 5.7 or higher
-- Composer (for dependency management)
-- Redis (for caching and session management)
 
 ### Clone the Repository
 
@@ -106,6 +114,30 @@ Users can update their profile picture and personal information. The profile sec
 </div>
 
 
+## Project Execution
+
+To execute the BechaKena project:
+
+1. **Copy the project files**: Place the project folder inside the `htdocs` directory, which is located inside the XAMPP installation folder.
+   - For example, if you’ve cloned the repository, move the folder to:  
+     `C:\xampp\htdocs\bechakena`
+
+2. **Start XAMPP**:
+   - Open XAMPP and start both **Apache** and **MySQL** services.
+
+3. **Database Setup**:
+   - Navigate to `localhost/phpmyadmin` in your browser.
+   - Create a new database and import the provided SQL scripts to set up the database schema and seed initial data.
+
+4. **Run the project**:
+   - In your browser, go to `localhost/your-project-folder-name`. For example:
+     ```
+     localhost/CSE3100-SD-IV-main
+     ```
+
+This will launch the BechaKena application, and you can start using it from there.
+
+
 ## Contributing
 
 Contributions are welcome! Please follow these steps to contribute:
@@ -115,3 +147,9 @@ Contributions are welcome! Please follow these steps to contribute:
 3. Commit your changes (`git commit -am 'Add new feature'`).
 4. Push to the branch (`git push origin feature/your-feature`).
 5. Create a new Pull Request.
+
+## Additional Information
+
+If you'd like to contribute any additional features, such as improving the auction mechanism, enhancing the user dashboard, or optimizing the bidding process, feel free to open an issue or a pull request. Your contributions are appreciated!
+
+---
