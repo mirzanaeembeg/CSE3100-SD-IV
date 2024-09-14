@@ -82,27 +82,6 @@ The `my_orders.php` page allows users to view their order history. It includes d
 
 Users can update their profile picture and personal information. The profile section also displays user stats such as total bids, winning bids, and available credits.
 
-### Screenshots
-
-<div style="display: flex; gap: 10px; justify-content: center;">
-    <img src="images/demo/Screenshot_1.png" alt="GUI Screenshot 1" width="400" />
-    <img src="images/demo/Screenshot_2.png" alt="GUI Screenshot 2" width="400" />
-</div>
-
-<div style="display: flex; gap: 10px; justify-content: center;">
-    <img src="images/demo/Screenshot_3.png" alt="GUI Screenshot 3" width="400" />
-    <img src="images/demo/Screenshot_4.png" alt="GUI Screenshot 4" width="400" />
-</div>
-
-<div style="display: flex; gap: 10px; justify-content: center;">
-    <img src="images/demo/Screenshot_5.png" alt="GUI Screenshot 5" width="400" />
-    <img src="images/demo/Screenshot_6.png" alt="GUI Screenshot 6" width="400" />
-</div>
-
-<div style="display: flex; gap: 10px; justify-content: center;">
-    <img src="images/demo/Screenshot_7.png" alt="GUI Screenshot 7" width="400" />
-    <img src="images/demo/Screenshot_8.png" alt="GUI Screenshot 8" width="400" />
-</div>
 
 
 ## Project Execution
@@ -127,13 +106,36 @@ To execute the BechaKena project:
      ```
 This will launch the BechaKena application, and you can start using it from there.
 
+### Screenshots
+
+<div style="display: flex; gap: 10px; justify-content: center;">
+    <img src="images/demo/Screenshot_1.png" alt="GUI Screenshot 1" width="400" />
+    <img src="images/demo/Screenshot_2.png" alt="GUI Screenshot 2" width="400" />
+</div>
+
+<div style="display: flex; gap: 10px; justify-content: center;">
+    <img src="images/demo/Screenshot_3.png" alt="GUI Screenshot 3" width="400" />
+    <img src="images/demo/Screenshot_4.png" alt="GUI Screenshot 4" width="400" />
+</div>
+
+<div style="display: flex; gap: 10px; justify-content: center;">
+    <img src="images/demo/Screenshot_5.png" alt="GUI Screenshot 5" width="400" />
+    <img src="images/demo/Screenshot_6.png" alt="GUI Screenshot 6" width="400" />
+</div>
+
+<div style="display: flex; gap: 10px; justify-content: center;">
+    <img src="images/demo/Screenshot_7.png" alt="GUI Screenshot 7" width="400" />
+    <img src="images/demo/Screenshot_8.png" alt="GUI Screenshot 8" width="400" />
+</div>
+
+
 ## Screencast
 
 You can view the screencast of the project demonstration at this link: [BechaKena Screencast](link-to-screencast).
 
 ## Project Report
 
-The project report detailing the features, architecture, and implementation can be accessed here: [BechaKena Project Report](link-to-project-report).
+The project report detailing the features, architecture, and implementation can be accessed here: [BechaKena Project Report](https://docs.google.com/document/d/1qQZ7OB776RMVo-fUZHDa9EsAtNwmc3TJ/edit?usp=sharing&ouid=109137004160820100145&rtpof=true&sd=true).
 
 ## Contributing
 
