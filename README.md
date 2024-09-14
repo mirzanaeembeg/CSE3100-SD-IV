@@ -87,8 +87,6 @@ Users can update their profile picture and personal information. The profile sec
 
 ### Screenshots
 
-<img src="assets/assets/Screenshot_6.png" alt="GUI Screenshot 6" width="700" />
-
 <div style="display: flex; gap: 10px; justify-content: center;">
     <img src="images/demo/Screenshot_1.png" alt="GUI Screenshot 1" width="400" />
     <img src="images/demo/Screenshot_2.png" alt="GUI Screenshot 2" width="400" />
