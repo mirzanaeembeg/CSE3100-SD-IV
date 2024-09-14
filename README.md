@@ -15,29 +15,19 @@ BechaKena is a dynamic e-commerce platform that integrates auction capabilities 
 ## Technologies Used
 
 - **Frontend**:
-  - HTML
-  - CSS (Bootstrap 5)
-  - JavaScript
-  - Font Awesome
+  - CSS
 
 - **Backend**:
   - PHP
   - MySQL
 
-- **Database Management**:
-  - Redis (for caching and session management)
-
 ## Dependencies
 
 ### Required Downloads/Installations
 
-- **PHP**: Version 7.4 or higher
-- **MySQL**: Version 5.7 or higher
-- **Composer**: For dependency management, you can download it from [Composer's official website](https://getcomposer.org/download/).
-- **Redis**: For caching and session management, install Redis from [Redis.io](https://redis.io/download).
+- **PHP**
+- **MySQL**
 
-### Additional Libraries
-- Make sure to run `composer install` after setting up the project to install required libraries.
 
 ## Installation
 
