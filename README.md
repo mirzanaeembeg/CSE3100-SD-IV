@@ -73,14 +73,13 @@ cd bechakena
 
 The `next_auction.php` page displays a countdown timer for the next auction. The timer updates every second to show the remaining time.
 
-![Next Auction Countdown](path/to/next_auction_screenshot.png) 
+![Next Auction Countdown]
 
 ### My Orders
 
 The `my_orders.php` page allows users to view their order history. It includes details such as order ID, product name, category, price, order time, quantity, address, and contact information.
 
-![My Orders](path/to/my_orders_screenshot.png)
-
+![My Orders]
 ### Profile Management
 
 Users can update their profile picture and personal information. The profile section also displays user stats such as total bids, winning bids, and available credits.
