@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'auth_check.php';
+require_once 'db_connection.php';
 
 if (!check_auth()) {
     header("Location: signin.php");
