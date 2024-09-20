@@ -77,7 +77,7 @@ try {
 </head>
 <body>
     <div class="container">
-        <h1 class="display-4 my-4">Hot Deals</h1>
+        <h1 class="display-4 my-4 text-center">Hot Deals</h1>
         
         <?php if (!empty($error_message)): ?>
             <div class="alert alert-warning" role="alert">

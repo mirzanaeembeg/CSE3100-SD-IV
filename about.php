@@ -102,7 +102,7 @@
                 <p class="card-text">Frontend: HTML & CSS
                     <br>Framework: Bootstrap
                     <br>Backend: PHP & MySQL</p>
-                <a href="about.html" class="btn btn-outline-info">Go Top</a>
+                <a href="about.php" class="btn btn-outline-info">Go Top</a>
             </div>
         </div>
     </div>
