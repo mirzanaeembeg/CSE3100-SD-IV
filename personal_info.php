@@ -68,7 +68,7 @@ $conn->close();
                         <img src="<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture" class="profile-pic" id="profile-pic">
                         <h3 class="profile-name"><?php echo htmlspecialchars($user['name']); ?></h3>
                         <p class="profile-email"><?php echo htmlspecialchars($user['email']); ?></p>
-                        <form action="upload.php" method="post" enctype="multipart/form-data">
+                        <form action="upload_profile_picture.php" method="post" enctype="multipart/form-data">
                             <input type="file" name="profilePicture" id="profilePicture" class="form-control form-control-sm" onchange="document.getElementById('profile-pic').src = window.URL.createObjectURL(this.files[0])">
                             <button type="submit" class="btn btn-light btn-sm mt-2">Upload</button>
                         </form>

@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["profilePicture"])) {
     if ($stmt->execute()) {
         echo "Profile picture updated successfully.";
         // Redirect back to the profile page
-        header("Location: profile.php");
+        header("Location: personal_info.php");
         exit();
     } else {
         echo "Error updating profile picture: " . $conn->error;
