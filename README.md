@@ -131,7 +131,7 @@ This will launch the BechaKena application, and you can start using it from ther
 
 ## Screencast
 
-You can view the screencast of the project demonstration at this link: [BechaKena Screencast](link-to-screencast).
+You can view the screencast of the project demonstration at this link: [BechaKena.Com Screencast](https://youtu.be/JnbI_pToNd4).
 
 ## Project Report
 
