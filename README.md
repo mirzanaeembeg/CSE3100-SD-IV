@@ -1,152 +1,148 @@
-# BechaKena - E-Commerce and Auction Platform
+# 🛒💼 BechaKena - E-Commerce and Auction Platform
 
-## Overview
+<div align="center">
 
-BechaKena is a dynamic e-commerce platform that integrates auction capabilities with traditional e-commerce functionalities. Users can place bids, win auctions, and manage their orders all within a sleek, modern interface. This application is built using a combination of PHP, HTML, CSS, and JavaScript, with a focus on providing a seamless user experience.
+![BechaKena Logo](https://via.placeholder.com/150x150.png?text=BechaKena+Logo)
 
-## Features
+[![PHP Version](https://img.shields.io/badge/PHP-7.4%2B-blue.svg)](https://www.php.net/)
+[![MySQL Version](https://img.shields.io/badge/MySQL-5.7%2B-blue.svg)](https://www.mysql.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-- **User Authentication**: Secure login and registration system.
-- **Profile Management**: Users can update their personal information and profile picture.
-- **Auction and Bidding**: Users can participate in auctions and view their bidding history.
-- **Order Management**: Users can view and manage their orders.
-- **Dashboard**: Provides users with insights into their bids, winning bids, and credits.
+[View Demo](https://youtu.be/JnbI_pToNd4) | [Report Bug](https://github.com/naeembeg/CSE3100-SD-IV/issues) | [Request Feature](https://github.com/naeembeg/CSE3100-SD-IV/issues)
 
-## Technologies Used
+</div>
 
-- **Frontend**:
-  - CSS
+## 📖 Table of Contents
+- [About The Project](#about-the-project)
+  - [Built With](#built-with)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Acknowledgements](#acknowledgements)
 
-- **Backend**:
-  - PHP
-  - MySQL
+## 🚀 About The Project
 
-## Dependencies
+BechaKena is a dynamic e-commerce platform that seamlessly integrates auction capabilities with traditional online shopping functionalities. Users can place bids, win auctions, and manage their orders all within a sleek, modern interface.
 
-### Required Downloads/Installations
+### Built With
+- 🖥️ PHP
+- 🎨 HTML/CSS
+- 💻 JavaScript
+- 🗄️ MySQL
 
-- **PHP**
-- **MySQL**
+## ✨ Features
 
+- 🔐 **User Authentication**: Secure login and registration system
+- 👤 **Profile Management**: Update personal information and profile picture
+- 🏷️ **Auction and Bidding**: Participate in auctions and view bidding history
+- 📦 **Order Management**: View and manage orders
+- 📊 **Dashboard**: Insights into bids, winning bids, and credits
 
-## Installation
+## 🏁 Getting Started
 
-### Clone the Repository
+To get a local copy up and running, follow these simple steps.
 
-```bash
-git clone https://github.com/naeembeg/CSE3100-SD-IV.git
-cd bechakena
-```
+### Prerequisites
 
-### Setup the Environment
+- PHP 7.4+
+- MySQL 5.7+
+- XAMPP (for easy setup)
 
-1. **Create a `.env` file** in the root directory and add your database credentials and other environment variables.
+### Installation
 
-2. **Import the Database**:
-   - Use the provided SQL scripts to set up the database schema and seed initial data.
-
-3. **Install Dependencies**:
-   ```bash
-   composer install
+1. Clone the repository
+   ```sh
+   git clone https://github.com/naeembeg/CSE3100-SD-IV.git
+   ```
+2. Move the project folder to your XAMPP `htdocs` directory
+   ```sh
+   mv CSE3100-SD-IV C:/xampp/htdocs/
+   ```
+3. Start XAMPP and ensure both Apache and MySQL services are running
+4. Create a new database in phpMyAdmin
+5. Import the provided SQL scripts to set up the database schema
+6. Configure the database connection in `db_connection.php`
+7. Access the project through your browser
+   ```
+   http://localhost/CSE3100-SD-IV
    ```
 
-4. **Start the Server**:
-   - You can use the built-in PHP server for development purposes:
-     ```bash
-     php -S localhost:8000
-     ```
-
-## Application Structure
-
-- **`public/`**: Contains all the public-facing files, including HTML, CSS, and JavaScript.
-- **`includes/`**: Contains PHP files that are included in other PHP files, such as header and footer.
-- **`css/`**: Contains CSS files for styling the application.
-- **`js/`**: Contains JavaScript files for client-side scripting.
-- **`images/`**: Contains images used in the application.
-- **`db_connection.php`**: PHP script for database connection.
-- **`next_auction.php`**: Page displaying the countdown to the next auction.
-- **`my_orders.php`**: Page for users to view their orders.
-
-## Usage
+## 💻 Usage
 
 ### Next Auction Countdown
-
-The `next_auction.php` page displays a countdown timer for the next auction. The timer updates every second to show the remaining time.
-
+The `next_auction.php` page features a dynamic countdown timer for upcoming auctions, building anticipation and engagement.
 
 ### My Orders
-
-The `my_orders.php` page allows users to view their order history. It includes details such as order ID, product name, category, price, order time, quantity, address, and contact information.
+Users can easily track their order history through the `my_orders.php` page, which provides comprehensive order details.
 
 ### Profile Management
+The profile section allows users to personalize their experience and keep track of their platform activities.
 
-Users can update their profile picture and personal information. The profile section also displays user stats such as total bids, winning bids, and available credits.
+## 📁 Project Structure
 
+```
+bechakena/
+│
+├── public/           # Public-facing files
+├── includes/         # PHP includes (headers, footers)
+├── css/              # Stylesheets
+├── js/               # JavaScript files
+├── images/           # Image assets
+├── db_connection.php # Database configuration
+├── next_auction.php  # Auction countdown page
+└── my_orders.php     # Order history page
+```
 
+## 🖼️ Screenshots
 
-## Project Execution
-
-To execute the BechaKena project:
-
-1. **Copy the project files**: Place the project folder inside the `htdocs` directory, which is located inside the XAMPP installation folder.
-   - For example, if you’ve cloned the repository, move the folder to:  
-     `C:\xampp\htdocs\CSE3100-SD-IV`
-
-2. **Start XAMPP**:
-   - Open XAMPP and start both **Apache** and **MySQL** services.
-
-3. **Database Setup**:
-   - Navigate to `localhost/phpmyadmin` in your browser.
-   - Create a new database and import the provided SQL scripts to set up the database schema and seed initial data.
-
-4. **Run the project**:
-   - In your browser, go to `localhost/your-project-folder-name`. For example:
-     ```
-     localhost/CSE3100-SD-IV
-     ```
-This will launch the BechaKena application, and you can start using it from there.
-
-### Screenshots
-
-<div style="display: flex; gap: 10px; justify-content: center;">
-    <img src="images/demo/Screenshot_1.png" alt="GUI Screenshot 1" width="400" />
-    <img src="images/demo/Screenshot_2.png" alt="GUI Screenshot 2" width="400" />
+<div align="center">
+  <img src="images/demo/Screenshot_1.png" alt="Home Page" width="45%">
+  <img src="images/demo/Screenshot_2.png" alt="Auction Page" width="45%">
 </div>
 
-<div style="display: flex; gap: 10px; justify-content: center;">
-    <img src="images/demo/Screenshot_3.png" alt="GUI Screenshot 3" width="400" />
-    <img src="images/demo/Screenshot_4.png" alt="GUI Screenshot 4" width="400" />
+<div align="center">
+  <img src="images/demo/Screenshot_3.png" alt="Dashboard" width="45%">
+  <img src="images/demo/Screenshot_4.png" alt="Profile" width="45%">
 </div>
 
-<div style="display: flex; gap: 10px; justify-content: center;">
-    <img src="images/demo/Screenshot_5.png" alt="GUI Screenshot 5" width="400" />
-    <img src="images/demo/Screenshot_6.png" alt="GUI Screenshot 6" width="400" />
-</div>
+## 🎥 Screencast
 
-<div style="display: flex; gap: 10px; justify-content: center;">
-    <img src="images/demo/Screenshot_7.png" alt="GUI Screenshot 7" width="400" />
-    <img src="images/demo/Screenshot_8.png" alt="GUI Screenshot 8" width="400" />
-</div>
+Get a comprehensive overview of BechaKena's features in our [project demonstration video](https://youtu.be/JnbI_pToNd4).
 
+## 📄 Project Report
 
-## Screencast
+For an in-depth look at the project's architecture and implementation, check out our [detailed project report](https://docs.google.com/document/d/1qQZ7OB776RMVo-fUZHDa9EsAtNwmc3TJ/edit?usp=sharing&ouid=109137004160820100145&rtpof=true&sd=true).
 
-You can view the screencast of the project demonstration at this link: [BechaKena.Com Screencast](https://youtu.be/JnbI_pToNd4).
+## 🤝 Contributing
 
-## Project Report
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-The project report detailing the features, architecture, and implementation can be accessed here: [BechaKena Project Report](https://docs.google.com/document/d/1qQZ7OB776RMVo-fUZHDa9EsAtNwmc3TJ/edit?usp=sharing&ouid=109137004160820100145&rtpof=true&sd=true).
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## Contributing
+## 📜 License
 
-Contributions are welcome! Please follow these steps to contribute:
+Distributed under the MIT License. See `LICENSE` for more information.
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/your-feature`).
-3. Commit your changes (`git commit -am 'Add new feature'`).
-4. Push to the branch (`git push origin feature/your-feature`).
-5. Create a new Pull Request.
+## 📞 Contact
 
-## Additional Information
+Mirza Naeem Beg - [mirzanaeem278@gmail.com](mailto:mirzanaeem278@gmail.com)
 
-If you'd like to contribute any additional features, such as improving the auction mechanism, enhancing the user dashboard, or optimizing the bidding process, feel free to open an issue or a pull request. Your contributions are appreciated!
+Project Link: [https://github.com/naeembeg/CSE3100-SD-IV](https://github.com/naeembeg/CSE3100-SD-IV)
+
+## 🙏 Acknowledgements
+
+- [XAMPP](https://www.apachefriends.org/)
+- [PHP](https://www.php.net/)
+- [MySQL](https://www.mysql.com/)
+- [Font Awesome](https://fontawesome.com)
