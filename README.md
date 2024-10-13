@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![BechaKena Logo](https://via.placeholder.com/150x150.png?text=BechaKena+Logo)
+![BechaKena Logo](logo.png)
 
 [![PHP Version](https://img.shields.io/badge/PHP-7.4%2B-blue.svg)](https://www.php.net/)
 [![MySQL Version](https://img.shields.io/badge/MySQL-5.7%2B-blue.svg)](https://www.mysql.com/)
