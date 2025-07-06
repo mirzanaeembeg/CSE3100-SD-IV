@@ -137,8 +137,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## 📞 Contact
 
 Mirza Naeem Beg - [mirzanaeem278@gmail.com](mailto:mirzanaeem278@gmail.com)
+[Learn more!](https://mirzanaeembeg.github.io/)
 
-Project Link: [https://github.com/naeembeg/CSE3100-SD-IV](https://github.com/naeembeg/CSE3100-SD-IV)
+Project Link: [https://github.com/mirzanaeembeg/CSE3100-SD-IV](https://github.com/mirzanaeembeg/CSE3100-SD-IV)
 
 ## 🙏 Acknowledgements
 
